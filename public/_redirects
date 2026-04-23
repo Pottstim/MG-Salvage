@@ -1,0 +1,2 @@
+# Force apex domain (www → root)
+https://www.mgsalvage.com/*  https://mgsalvage.com/:splat  301!

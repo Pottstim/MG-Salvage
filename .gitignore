@@ -16,10 +16,14 @@ npm-debug.log*
 # Dependencies
 node_modules/
 
-# Build output
+# Astro build output
 dist/
-build/
+.astro/
 
 # Environment
 .env
 .env.local
+.env.production
+
+# Cloudflare
+.wrangler/

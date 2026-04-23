@@ -9,10 +9,9 @@ export default defineConfig({
       configFile: './tailwind.config.mjs'
     }),
     sitemap({
-      filter: (page) => !page.includes('/admin'),
+      filter: (page) => !page.includes('/admin') && !page.includes('/api/'),
       changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date()
+      priority: 0.7
     })
   ],
   output: 'static',
