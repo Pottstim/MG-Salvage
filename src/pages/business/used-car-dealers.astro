@@ -1,0 +1,293 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import BusinessForm from '../../components/forms/BusinessForm.astro';
+import { BUSINESS, SEO, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const title = 'Used Car Dealer Lot Clearing | MG Salvage B2B';
+const description = 'Professional lot clearing for used car dealers. Remove aged inventory, trade-in rejects, and unwanted vehicles. Competitive pricing and scheduled pickups across NC.';
+const keywords = 'used car dealer lot clearing, dealer vehicle removal, aged inventory disposal, dealer car buyer, trade in vehicle removal, car dealer salvage NC';
+
+const schema = {
+  '@type': 'Service',
+  name: 'Used Car Dealer Lot Clearing',
+  provider: ORGANIZATION_SCHEMA,
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Used Car Dealers'
+  },
+  description: description
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Business', url: '/business-vehicle-removal' },
+  { name: 'Used Car Dealers', url: '/business/used-car-dealers' }
+];
+
+const dealerBenefits = [
+  {
+    title: 'Aged Inventory Removal',
+    description: 'Clear vehicles that have been on your lot too long and free up prime retail space for better inventory.',
+    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Trade-In Rejects',
+    description: 'Dispose of trade-ins that don\'t meet your retail standards without the hassle of auction fees.',
+    icon: 'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Bulk Lot Clearing',
+    description: 'Schedule large-scale lot cleanouts. We can handle 10, 20, or 50+ vehicles in coordinated pickups.',
+    icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+  },
+  {
+    title: 'Competitive Pricing',
+    description: 'We understand dealer economics. Get fair salvage value that helps offset your inventory carrying costs.',
+    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Recurring Pickups',
+    description: 'Set up weekly or monthly recurring pickups to keep your back lot clear and organized.',
+    icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15'
+  },
+  {
+    title: 'Title Assistance',
+    description: 'We handle title transfers, lien releases, and all paperwork to ensure clean ownership records.',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  }
+];
+
+const dealerScenarios = [
+  { title: '90+ Day Inventory', desc: 'Vehicles sitting on your lot for 90+ days not moving' },
+  { title: 'High Mileage Trade-Ins', desc: 'Trade-ins with 200k+ miles not suitable for your market' },
+  { title: 'Mechanical Issues', desc: 'Vehicles with costly mechanical problems' },
+  { title: 'Auction Purchases', desc: 'Auction buys that didn\'t work out as planned' },
+  { title: 'Customer Returns', desc: 'Buybacks or returned customer vehicles' },
+  { title: 'Lease Returns', desc: 'End-of-lease vehicles you don\'t want to retail' }
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="business"
+    title="Used Car Dealer Lot Clearing"
+    subtitle="Turn Aged Inventory Into Cash | Bulk Pickups Available"
+    showForm={false}
+  />
+
+  <!-- Introduction -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">We Understand Dealer Economics</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            Every vehicle on your lot costs you money—floor plan interest, insurance, maintenance, 
+            and opportunity cost. When a car sits for 60, 90, or 120 days, it becomes a liability 
+            rather than an asset.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            MG Salvage helps used car dealers across North Carolina convert aged inventory and 
+            trade-in rejects into cash quickly. We offer competitive pricing, flexible scheduling, 
+            and professional service that respects your business.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-charcoal-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-brand-orange">No</div>
+              <div class="text-sm text-charcoal-600">Auction Fees</div>
+            </div>
+            <div class="bg-charcoal-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-brand-orange">No</div>
+              <div class="text-sm text-charcoal-600">Transport Costs</div>
+            </div>
+            <div class="bg-charcoal-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-brand-orange">No</div>
+              <div class="text-sm text-charcoal-600">Inspection Hassle</div>
+            </div>
+            <div class="bg-charcoal-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-brand-orange">Fast</div>
+              <div class="text-sm text-charcoal-600">Payment</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Request Lot Clearing Quote</h3>
+          <BusinessForm defaultType="dealer" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Built for Dealers</h2>
+        <p class="text-charcoal-600">
+          Services designed to help you maintain a profitable, turning inventory.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {dealerBenefits.map(benefit => (
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-charcoal-100">
+            <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={benefit.icon} />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-charcoal-900 mb-2">{benefit.title}</h3>
+            <p class="text-charcoal-600 text-sm">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Scenarios -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-4">Common Dealer Scenarios</h2>
+        <p class="text-charcoal-600 text-center mb-12">
+          We help dealers with these situations every day:
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {dealerScenarios.map(scenario => (
+            <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+              <h4 class="font-semibold text-charcoal-900 mb-2 flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {scenario.title}
+              </h4>
+              <p class="text-charcoal-600 text-sm">{scenario.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI Calculator Section -->
+  <section class="section-padding bg-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">The Math Makes Sense</h2>
+        <p class="text-charcoal-300 mb-12">
+          Every day a car sits on your lot costs money. Here's what typical aged inventory costs you:
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+            <div class="text-3xl font-bold text-brand-orange mb-2">$8-15</div>
+            <div class="text-charcoal-300">Daily Floor Plan Cost</div>
+            <div class="text-sm text-charcoal-500 mt-2">Per vehicle at typical rates</div>
+          </div>
+          <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+            <div class="text-3xl font-bold text-brand-orange mb-2">$3-5</div>
+            <div class="text-charcoal-300">Insurance & Tags</div>
+            <div class="text-sm text-charcoal-500 mt-2">Daily cost per vehicle</div>
+          </div>
+          <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+            <div class="text-3xl font-bold text-brand-orange mb-2">30¢</div>
+            <div class="text-charcoal-300">Auction Fee Savings</div>
+            <div class="text-sm text-charcoal-500 mt-2">Per dollar vs. auction</div>
+          </div>
+        </div>
+
+        <p class="text-charcoal-400 mt-8 text-sm">
+          A vehicle sitting 90 days could cost $1,000+ in carrying costs. Converting it to cash 
+          frees up capital for inventory that turns faster.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">How Dealer Lot Clearing Works</h2>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Inventory List</h4>
+          <p class="text-sm text-charcoal-600">Send us your aged inventory or specific VINs you want to move</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Valuation</h4>
+          <p class="text-sm text-charcoal-600">We provide quotes within 24 hours based on current salvage values</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Coordinated Pickup</h4>
+          <p class="text-sm text-charcoal-600">We schedule pickup around your business hours and traffic flow</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Payment</h4>
+          <p class="text-sm text-charcoal-600">Cash or check on pickup, titles processed, space cleared</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-charcoal-100 text-center">
+          <svg class="w-12 h-12 text-brand-orange/30 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          <blockquote class="text-xl text-charcoal-700 italic mb-6">
+            "We used to send aged inventory to auction and lose money on fees and transport. 
+            MG Salvage comes to us, pays fair, and clears our lot in a day. Game changer 
+            for our cash flow."
+          </blockquote>
+          <div class="flex items-center justify-center gap-4">
+            <div class="w-12 h-12 bg-charcoal-200 rounded-full flex items-center justify-center text-charcoal-600 font-bold">
+              MR
+            </div>
+            <div class="text-left">
+              <div class="font-semibold text-charcoal-900">Mike R.</div>
+              <div class="text-sm text-charcoal-500">Independent Dealer, Fayetteville NC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-br from-graphite-600 to-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Ready to Clear Your Lot?</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Get a quote for your aged inventory and start turning dead stock into working capital.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary text-lg py-4 px-8" onclick="document.querySelector('form').scrollIntoView({behavior: 'smooth'}); return false;">
+            Request Dealer Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

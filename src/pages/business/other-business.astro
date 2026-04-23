@@ -1,0 +1,318 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import BusinessForm from '../../components/forms/BusinessForm.astro';
+import { BUSINESS, SEO, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const title = 'Custom Vehicle Solutions | Business Vehicle Removal | MG Salvage';
+const description = 'Custom vehicle disposal solutions for businesses of all types. Property management, estate executors, landlords, and unique business situations. Professional service across NC.';
+const keywords = 'business vehicle removal, custom vehicle disposal, property management car removal, estate vehicle disposal, landlord vehicle removal, commercial vehicle solutions NC';
+
+const schema = {
+  '@type': 'Service',
+  name: 'Custom Business Vehicle Solutions',
+  provider: ORGANIZATION_SCHEMA,
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Businesses and Organizations'
+  },
+  description: description
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Business', url: '/business-vehicle-removal' },
+  { name: 'Other Business', url: '/business/other-business' }
+];
+
+const businessTypes = [
+  {
+    title: 'Property Management',
+    description: 'Remove abandoned vehicles from apartment complexes, rental properties, and commercial parking areas. We handle title issues and provide proper documentation.',
+    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
+  },
+  {
+    title: 'Estate Executors',
+    description: 'Dispose of vehicles from estates quickly and professionally. We work with executors and probate attorneys to handle vehicle liquidation efficiently.',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
+    title: 'Landlords',
+    description: 'Clear vehicles left behind by tenants. We understand landlord-tenant laws and can work with you to remove abandoned vehicles properly.',
+    icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
+  },
+  {
+    title: 'Government & Municipal',
+    description: 'Surplus vehicle disposal for government agencies, municipalities, and public works departments. Full compliance and documentation.',
+    icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
+  },
+  {
+    title: 'Non-Profits & Organizations',
+    description: 'Vehicle donation pickups and disposal for charities, churches, and non-profit organizations. Proper receipt documentation for tax purposes.',
+    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
+  },
+  {
+    title: 'Financial Institutions',
+    description: 'Repossessed vehicle disposal for banks, credit unions, and lenders. We handle vehicles in various conditions with proper title transfer.',
+    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+  }
+];
+
+const scenarios = [
+  'Abandoned vehicles on rental property',
+  'Estate vehicles needing quick disposition',
+  'Surplus government fleet vehicles',
+  'Repossessed cars from lenders',
+  'Donated vehicles from charities',
+  'Vehicles from evictions',
+  'Commercial lot clearing',
+  'Storage unit abandoned vehicles'
+];
+
+const processSteps = [
+  {
+    step: '1',
+    title: 'Contact Us',
+    desc: 'Describe your situation and vehicle details'
+  },
+  {
+    step: '2',
+    title: 'Assessment',
+    desc: 'We evaluate the situation and legal requirements'
+  },
+  {
+    step: '3',
+    title: 'Quote',
+    desc: 'Receive customized pricing for your needs'
+  },
+  {
+    step: '4',
+    title: 'Execution',
+    desc: 'Professional removal with full documentation'
+  }
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="business"
+    title="Custom Vehicle Solutions"
+    subtitle="Specialized Disposal for Unique Business Situations"
+    showForm={false}
+  />
+
+  <!-- Introduction -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Not a Typical Business? We Can Help.</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            Not every vehicle disposal situation fits a standard category. Property managers dealing 
+            with tenant abandonment, estate executors handling vehicle liquidation, government agencies 
+            with surplus equipment—we handle unique situations with professionalism and expertise.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            Our team has experience with diverse business scenarios across North Carolina. We understand 
+            the legal requirements, documentation needs, and time sensitivities that come with different 
+            business situations. Tell us about your needs and we'll create a custom solution.
+          </p>
+
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <h4 class="font-semibold text-charcoal-900 mb-3">Common Situations We Handle:</h4>
+            <div class="grid grid-cols-1 gap-2">
+              {scenarios.map(scenario => (
+                <div class="flex items-center gap-2 text-sm text-charcoal-700">
+                  <svg class="w-4 h-4 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {scenario}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Request Custom Quote</h3>
+          <BusinessForm defaultType="other" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Types Grid -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Business Types We Serve</h2>
+        <p class="text-charcoal-600">
+          Customized solutions for organizations with unique vehicle disposal needs.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {businessTypes.map(type => (
+          <div class="bg-white rounded-xl p-6 border border-charcoal-100">
+            <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={type.icon} />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-charcoal-900 mb-2">{type.title}</h3>
+            <p class="text-charcoal-600 text-sm">{type.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Why Work With MG Salvage</h2>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            Unique situations require flexible solutions. We bring experience, professionalism, 
+            and adaptability to every custom vehicle disposal project.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-brand-teal/10 text-brand-teal rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-charcoal-900 mb-1">Flexible Solutions</h3>
+                <p class="text-charcoal-600">Customized approach based on your unique situation and timeline</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-brand-teal/10 text-brand-teal rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-charcoal-900 mb-1">Proper Documentation</h3>
+                <p class="text-charcoal-600">Full paperwork for liability protection and record keeping</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-brand-teal/10 text-brand-teal rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-charcoal-900 mb-1">Timely Service</h3>
+                <p class="text-charcoal-600">We understand time-sensitive situations and work quickly</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-brand-teal/10 text-brand-teal rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-charcoal-900 mb-1">Professional Team</h3>
+                <p class="text-charcoal-600">Experienced staff who understand business and legal requirements</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-xl font-bold text-charcoal-950 mb-6">Have a Unique Situation?</h3>
+          <p class="text-charcoal-600 mb-6">
+            We're experienced with a wide variety of business scenarios. If your situation 
+            doesn't fit a standard category, we'd still like to hear from you.
+          </p>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-charcoal-700">No situation too unusual</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-charcoal-700">Confidential consultations</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-charcoal-700">Flexible scheduling</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-charcoal-700">Legal compliance assistance</span>
+            </div>
+          </div>
+
+          <a 
+            href={formatPhoneLink(BUSINESS.phone)} 
+            class="btn-primary w-full text-center block"
+          >
+            Call to Discuss: {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section-padding bg-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-display-md font-bold text-white text-center mb-12">Our Custom Solution Process</h2>
+
+        <div class="grid md:grid-cols-4 gap-8">
+          {processSteps.map(item => (
+            <div class="text-center">
+              <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                {item.step}
+              </div>
+              <h4 class="font-semibold text-white mb-2">{item.title}</h4>
+              <p class="text-charcoal-400 text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-br from-graphite-600 to-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Have a Unique Vehicle Situation?</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Contact us to discuss your specific needs. We create custom solutions for businesses and organizations of all types.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary text-lg py-4 px-8" onclick="document.querySelector('form').scrollIntoView({behavior: 'smooth'}); return false;">
+            Request Custom Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,317 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import BusinessForm from '../../components/forms/BusinessForm.astro';
+import { BUSINESS, SEO, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const title = 'Fleet Vehicle Disposal | Commercial Fleet Removal | MG Salvage';
+const description = 'Professional fleet vehicle disposal for commercial businesses. Remove end-of-life fleet vehicles, retired work trucks, and commercial equipment. Bulk fleet clearing services across NC.';
+const keywords = 'fleet vehicle disposal, commercial fleet removal, fleet clearing, work truck disposal, commercial vehicle salvage, business fleet removal NC';
+
+const schema = {
+  '@type': 'Service',
+  name: 'Fleet Vehicle Disposal',
+  provider: ORGANIZATION_SCHEMA,
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Commercial Fleets and Businesses'
+  },
+  description: description
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Business', url: '/business-vehicle-removal' },
+  { name: 'Fleet & Commercial', url: '/business/fleet-commercial' }
+];
+
+const fleetBenefits = [
+  {
+    title: 'Bulk Fleet Removal',
+    description: 'Dispose of 5, 10, or 50+ vehicles in coordinated pickups. We handle large-scale fleet retirements efficiently.',
+    icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+  },
+  {
+    title: 'End-of-Life Vehicles',
+    description: 'Clear retired work trucks, vans, and service vehicles that have reached the end of their useful life.',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z'
+  },
+  {
+    title: 'Equipment Disposal',
+    description: 'We handle commercial equipment, machinery, and specialized vehicles as part of fleet cleanouts.',
+    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z'
+  },
+  {
+    title: 'Regulatory Compliance',
+    description: 'Proper documentation for liability release and regulatory compliance. We provide all necessary paperwork.',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
+    title: 'Coordinated Scheduling',
+    description: 'Work around your operational needs. We schedule pickups to minimize disruption to your business.',
+    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Asset Recovery',
+    description: 'Maximize recovery value from retired fleet assets. Fair pricing based on salvage value and components.',
+    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+  }
+];
+
+const fleetTypes = [
+  'Work Trucks & Utility Vehicles',
+  'Service Vans & Delivery Vehicles',
+  'Heavy Equipment & Machinery',
+  'Box Trucks & Commercial Vehicles',
+  'Fleet Cars & Sales Vehicles',
+  'Agricultural Equipment'
+];
+
+const fleetProcess = [
+  {
+    step: '1',
+    title: 'Fleet Assessment',
+    desc: 'We review your fleet list and vehicle conditions'
+  },
+  {
+    step: '2',
+    title: 'Bulk Quote',
+    desc: 'Receive competitive pricing for your entire fleet'
+  },
+  {
+    step: '3',
+    title: 'Coordination',
+    desc: 'Schedule phased or single-day pickup'
+  },
+  {
+    step: '4',
+    title: 'Execution',
+    desc: 'Professional removal with full documentation'
+  }
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="business"
+    title="Fleet Vehicle Disposal"
+    subtitle="Professional Fleet Removal & Asset Recovery"
+    showForm={false}
+  />
+
+  <!-- Introduction -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Fleet Disposal Made Simple</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            Retiring an entire fleet or disposing of multiple commercial vehicles requires coordination, 
+            efficiency, and compliance. MG Salvage specializes in bulk fleet removal for businesses 
+            across North Carolina, from small commercial fleets to large-scale retirements.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            We understand the unique challenges of fleet disposal: title management for multiple vehicles, 
+            coordinated logistics, minimizing operational disruption, and ensuring proper documentation for 
+            liability transfer. Our team handles every aspect professionally.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-charcoal-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-brand-orange">5-50+</div>
+              <div class="text-sm text-charcoal-600">Vehicles Per Pickup</div>
+            </div>
+            <div class="bg-charcoal-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-brand-orange">1 Day</div>
+              <div class="text-sm text-charcoal-600">Full Fleet Clearing</div>
+            </div>
+            <div class="bg-charcoal-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-brand-orange">Full</div>
+              <div class="text-sm text-charcoal-600">Documentation</div>
+            </div>
+            <div class="bg-charcoal-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-brand-orange">Flexible</div>
+              <div class="text-sm text-charcoal-600">Scheduling</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Request Fleet Quote</h3>
+          <BusinessForm defaultType="fleet" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet Types -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-4">Fleet Vehicles We Handle</h2>
+        <p class="text-charcoal-600 text-center mb-12">
+          We specialize in commercial fleet vehicles of all types:
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {fleetTypes.map(type => (
+            <div class="bg-white rounded-xl p-6 border border-charcoal-100 flex items-center gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="font-medium text-charcoal-800">{type}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 bg-brand-teal/5 rounded-xl p-6 border border-brand-teal/20">
+          <p class="text-charcoal-700 text-center">
+            <strong>Have specialized equipment?</strong> We work with construction companies, 
+            agricultural operations, utilities, and more. Call {BUSINESS.phoneDisplay} to discuss 
+            your specific fleet disposal needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Why Choose MG Salvage for Fleet Disposal</h2>
+        <p class="text-charcoal-600">
+          Experience and capacity to handle fleet retirements of any size.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {fleetBenefits.map(benefit => (
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={benefit.icon} />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-charcoal-900 mb-2">{benefit.title}</h3>
+            <p class="text-charcoal-600 text-sm">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet Process -->
+  <section class="section-padding bg-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-display-md font-bold text-white text-center mb-12">Our Fleet Disposal Process</h2>
+
+        <div class="grid md:grid-cols-4 gap-8">
+          {fleetProcess.map(item => (
+            <div class="text-center">
+              <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                {item.step}
+              </div>
+              <h4 class="font-semibold text-white mb-2">{item.title}</h4>
+              <p class="text-charcoal-400 text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 bg-white/5 rounded-xl p-6 border border-white/10">
+          <p class="text-charcoal-300 text-center text-sm">
+            <strong>Need phased removal?</strong> We can coordinate multi-day or multi-week fleet 
+            disposal schedules to align with your replacement timelines or operational requirements.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance Section -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Compliance & Documentation</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            Fleet disposal involves more than just vehicle removal. Proper documentation is essential 
+            for liability transfer, tax purposes, and regulatory compliance.
+          </p>
+
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="font-semibold text-charcoal-900">Title Transfer Documentation</div>
+                <div class="text-charcoal-600 text-sm">Proper title transfer and DMV notification for liability release</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="font-semibold text-charcoal-900">Certificate of Destruction</div>
+                <div class="text-charcoal-600 text-sm">Available for vehicles requiring documented disposal</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="font-semibold text-charcoal-900">Detailed Invoices</div>
+                <div class="text-charcoal-600 text-sm">Complete documentation for your accounting and tax records</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="font-semibold text-charcoal-900">Environmental Compliance</div>
+                <div class="text-charcoal-600 text-sm">Proper fluid recovery and recycling per EPA requirements</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-xl font-bold text-charcoal-950 mb-4">Industries We Serve</h3>
+          <div class="grid grid-cols-2 gap-3">
+            {['Construction', 'Utilities', 'Agriculture', 'Delivery Services', 'Government Fleets', 'Rental Companies', 'Transportation', 'Landscaping'].map(industry => (
+              <div class="bg-white rounded-lg px-4 py-3 text-sm font-medium text-charcoal-700 border border-charcoal-100">
+                {industry}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-br from-graphite-600 to-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Ready to Retire Your Fleet?</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Get a comprehensive quote for your fleet disposal needs. Professional service from assessment through documentation.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary text-lg py-4 px-8" onclick="document.querySelector('form').scrollIntoView({behavior: 'smooth'}); return false;">
+            Request Fleet Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

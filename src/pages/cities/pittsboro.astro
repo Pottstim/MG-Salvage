@@ -1,0 +1,202 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import HowItWorks from '../../components/sections/HowItWorks.astro';
+import TestimonialsSection from '../../components/sections/TestimonialsSection.astro';
+import ConsumerEstimateForm from '../../components/forms/ConsumerEstimateForm.astro';
+import { BUSINESS, SERVICE_AREAS, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const cityName = 'Pittsboro';
+const citySlug = 'pittsboro';
+const title = `Cash for Junk Cars ${cityName} NC | Free Towing | Chatham County`;
+const description = `Get cash for your junk car in ${cityName}, NC. Free towing, same-day pickup available. Serving all of Chatham County. Call (919) 777-5427 for a quick quote.`;
+const keywords = `cash for junk cars ${cityName.toLowerCase()}, junk car removal ${cityName.toLowerCase()}, sell my junk car ${cityName.toLowerCase()}, free towing chatham county, vehicle salvage ${cityName.toLowerCase()}`;
+
+const schema = {
+  '@type': 'LocalBusiness',
+  name: `MG Salvage - ${cityName}`,
+  description: description,
+  url: `https://mgsalvage.com/cities/${citySlug}`,
+  telephone: BUSINESS.phone,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: cityName,
+    addressRegion: 'NC',
+    addressCountry: 'US'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '35.7204',
+    longitude: '-79.1772'
+  },
+  areaServed: {
+    '@type': 'City',
+    name: cityName,
+    containedInPlace: {
+      '@type': 'State',
+      name: 'North Carolina'
+    }
+  }
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Service Areas', url: '/areas' },
+  { name: cityName, url: `/cities/${citySlug}` }
+];
+
+const nearbyAreas = SERVICE_AREAS.filter(a => ['Sanford', 'Carthage', 'Siler City', 'Chapel Hill'].includes(a.name));
+
+const localFaqs = [
+  {
+    q: `Do you service rural areas around ${cityName}?`,
+    a: `Yes, we regularly service all of Chatham County including the rural areas around ${cityName}. Whether you're on a farm, a rural property off Highway 64, or in the ${cityName} town limits, we come to you.`
+  },
+  {
+    q: `How much can I get for my junk car in ${cityName}?`,
+    a: `Prices vary based on vehicle weight and current scrap metal markets. Most vehicles in the ${cityName} area range from $200-$800+. We pay competitive rates for Chatham County residents.`
+  },
+  {
+    q: `Do I need to bring my car to you?`,
+    a: `No, we come to you! Free towing is always included. We'll pick up your vehicle from your home, farm, or property anywhere in the ${cityName} area.`
+  },
+  {
+    q: `What paperwork do I need?`,
+    a: `Ideally, you'll have the title. If you've lost it, we can help guide you through the process. In some cases, we can still purchase vehicles without titles with proper documentation.`
+  }
+];
+
+const coverageAreas = [
+  'Pittsboro Town Center',
+  'Fearrington Village',
+  'Bynum',
+  'Gulf',
+  'Moncure',
+  'All Rural Chatham County'
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="local"
+    location={cityName}
+    showForm={true}
+    formType="consumer"
+  />
+
+  <!-- Local Content -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Cash for Junk Cars in {cityName}, NC</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            {cityName} and Chatham County residents trust MG Salvage for fast, professional junk car 
+            removal. Whether you're in the heart of {cityName}, out near Fearrington Village, 
+            or on a rural property in Chatham County, we come to you with free towing and fair prices.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            We understand that {cityName}'s mix of historic town center and sprawling rural areas 
+            means vehicles break down in all kinds of locations. Our tow operators are experienced 
+            with both tight town streets and rural farm access roads.
+          </p>
+
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <h4 class="font-semibold text-charcoal-900 mb-3">Areas We Cover in {cityName} & Chatham County:</h4>
+            <div class="flex flex-wrap gap-2">
+              {coverageAreas.map(area => (
+                <span class="bg-white px-3 py-1 rounded-full text-sm text-charcoal-700 border border-charcoal-200">
+                  {area}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Get Your {cityName} Quote</h3>
+          <ConsumerEstimateForm location={cityName} showTitle={false} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local FAQs -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-8">Common Questions for {cityName} Residents</h2>
+
+        <div class="space-y-4">
+          {localFaqs.map((faq, index) => (
+            <details class="bg-white rounded-xl border border-charcoal-100 group">
+              <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                <span class="font-semibold text-charcoal-900 pr-4">{faq.q}</span>
+                <span class="w-8 h-8 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center flex-shrink-0 group-open:rotate-180 transition-transform">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-charcoal-600">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="/faq" class="inline-flex items-center text-brand-orange font-medium hover:text-brand-orange-dark">
+            View all FAQs
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby Areas -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-8">Also Serving Areas Near {cityName}</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {nearbyAreas.map(area => (
+          <a 
+            href={`/cities/${area.slug}`}
+            class="bg-charcoal-50 rounded-lg p-4 text-center hover:bg-charcoal-100 transition-colors border border-charcoal-100"
+          >
+            <div class="font-semibold text-charcoal-900">{area.name}</div>
+            <div class="text-sm text-charcoal-500">{area.distance}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks variant="consumer" />
+  <TestimonialsSection />
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-br from-charcoal-900 to-graphite-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Sell Your Junk Car in {cityName} Today</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Free towing, fair prices, and fast service throughout Chatham County.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Get My Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

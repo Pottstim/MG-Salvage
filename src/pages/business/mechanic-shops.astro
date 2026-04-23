@@ -1,0 +1,223 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import BusinessForm from '../../components/forms/BusinessForm.astro';
+import { BUSINESS, BUSINESS_TYPES, SEO, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const title = 'Mechanic Shop Vehicle Removal | MG Salvage B2B';
+const description = 'Professional vehicle removal for mechanic shops and auto repair facilities. Clear non-repairable vehicles and project cars. Bulk pickups available. Serving NC.';
+const keywords = 'mechanic shop vehicle removal, auto repair lot clearing, shop car disposal, mechanic salvage, business vehicle removal NC';
+
+const schema = {
+  '@type': 'Service',
+  name: 'Mechanic Shop Vehicle Removal',
+  provider: ORGANIZATION_SCHEMA,
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Mechanic Shops and Auto Repair Facilities'
+  },
+  description: description
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Business', url: '/business-vehicle-removal' },
+  { name: 'Mechanic Shops', url: '/business/mechanic-shops' }
+];
+
+const mechanicBenefits = [
+  {
+    title: 'Clear Bay Space',
+    description: 'Remove customer vehicles that are uneconomical to repair and free up valuable shop space.',
+    icon: 'M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z'
+  },
+  {
+    title: 'Customer Abandonment',
+    description: 'We handle vehicles left by customers who never returned, including title processing assistance.',
+    icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
+  },
+  {
+    title: 'Project Car Disposal',
+    description: 'Dispose of old project cars and donor vehicles that have been sitting for years.',
+    icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+  },
+  {
+    title: 'Scheduled Pickups',
+    description: 'Set up regular pickup schedules—weekly, monthly, or on-demand based on your needs.',
+    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Competitive Pricing',
+    description: 'We pay fair prices for vehicles, including parts cars with valuable components still intact.',
+    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Documentation Handled',
+    description: 'All paperwork processed properly. We provide receipts and handle title transfers.',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  }
+];
+
+const commonScenarios = [
+  'Customer vehicle deemed too expensive to repair',
+  'Abandoned vehicles left at your shop',
+  'Old donor/project cars taking up space',
+  'Engine swaps or transmissions left behind',
+  'Insurance totals customer declined to fix',
+  'Fleet maintenance vehicles at end of life'
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="business"
+    title="Mechanic Shop Vehicle Removal"
+    subtitle="Clear Space & Get Paid for Non-Repairables"
+    showForm={false}
+  />
+
+  <!-- Benefits Section -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Built for Auto Repair Shops</h2>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            We understand the challenges mechanic shops face with customer vehicles that aren't worth 
+            repairing and old project cars taking up valuable bay space. Our streamlined process gets 
+            these vehicles out of your way quickly while putting money back in your pocket.
+          </p>
+
+          <div class="space-y-6">
+            {mechanicBenefits.map(benefit => (
+              <div class="flex gap-4">
+                <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={benefit.icon} />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-charcoal-900 mb-1">{benefit.title}</h3>
+                  <p class="text-charcoal-600">{benefit.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Get a Shop Quote</h3>
+          <BusinessForm defaultType="mechanic" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Scenarios -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-8">Common Shop Scenarios We Handle</h2>
+
+        <div class="bg-white rounded-xl shadow-sm border border-charcoal-100 p-8">
+          <ul class="space-y-4">
+            {commonScenarios.map((scenario, index) => (
+              <li class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold">
+                  {index + 1}
+                </div>
+                <span class="text-charcoal-700 pt-1">{scenario}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="mt-8 bg-brand-orange/5 rounded-xl p-6 border border-brand-orange/20">
+          <p class="text-charcoal-700 text-center">
+            <strong>Have a unique situation?</strong> We've worked with hundreds of shops across NC. 
+            Call us at {BUSINESS.phoneDisplay} to discuss your specific needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works for Shops -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Simple Process for Shops</h2>
+        <p class="text-charcoal-600">
+          We've streamlined our process to respect your time and minimize disruption to your business.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Contact Us</h4>
+          <p class="text-sm text-charcoal-600">Call or fill out the form with vehicle details</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Get Quote</h4>
+          <p class="text-sm text-charcoal-600">Receive a fair estimate within 30 minutes</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Schedule Pickup</h4>
+          <p class="text-sm text-charcoal-600">We work around your shop hours</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Get Paid</h4>
+          <p class="text-sm text-charcoal-600">Cash or check on pickup, paperwork handled</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Indicators -->
+  <section class="section-padding bg-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-bold text-brand-orange mb-2">500+</div>
+          <div class="text-charcoal-300">Shops Served</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-brand-orange mb-2">24hr</div>
+          <div class="text-charcoal-300">Average Response</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-brand-orange mb-2">Licensed</div>
+          <div class="text-charcoal-300">NC Salvage Dealer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-br from-graphite-600 to-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Clear Your Shop Today</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Stop letting non-repairable vehicles take up valuable bay space. Get a quote and schedule pickup.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary text-lg py-4 px-8" onclick="document.querySelector('form').scrollIntoView({behavior: 'smooth'}); return false;">
+            Request Shop Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

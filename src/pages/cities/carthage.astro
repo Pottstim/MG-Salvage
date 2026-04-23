@@ -1,0 +1,273 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import HowItWorks from '../../components/sections/HowItWorks.astro';
+import TestimonialsSection from '../../components/sections/TestimonialsSection.astro';
+import ConsumerEstimateForm from '../../components/forms/ConsumerEstimateForm.astro';
+import { BUSINESS, SERVICE_AREAS, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const cityName = 'Carthage';
+const citySlug = 'carthage';
+const title = `Cash for Junk Cars ${cityName} NC | Free Towing | Moore County`;
+const description = `Get cash for your junk car in ${cityName}, NC. Free towing, same-day pickup available. Serving Moore County and the Sandhills region. Call (919) 777-5427.`;
+const keywords = `cash for junk cars ${cityName.toLowerCase()}, junk car removal ${cityName.toLowerCase()}, sell my junk car ${cityName.toLowerCase()}, free towing moore county, vehicle salvage ${cityName.toLowerCase()}`;
+
+const schema = {
+  '@type': 'LocalBusiness',
+  name: `MG Salvage - ${cityName}`,
+  description: description,
+  url: `https://mgsalvage.com/cities/${citySlug}`,
+  telephone: BUSINESS.phone,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: cityName,
+    addressRegion: 'NC',
+    addressCountry: 'US'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '35.3457',
+    longitude: '-79.4170'
+  },
+  areaServed: {
+    '@type': 'City',
+    name: cityName,
+    containedInPlace: {
+      '@type': 'State',
+      name: 'North Carolina'
+    }
+  }
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Service Areas', url: '/areas' },
+  { name: cityName, url: `/cities/${citySlug}` }
+];
+
+const nearbyAreas = SERVICE_AREAS.filter(a => ['Southern Pines', 'Aberdeen', 'Sanford', 'Pinehurst'].includes(a.name));
+
+const localFaqs = [
+  {
+    q: `Do you service the Pinehurst and Southern Pines area?`,
+    a: `Yes, we regularly service the entire Moore County area including ${cityName}, Southern Pines, Pinehurst, Aberdeen, and all surrounding communities. We understand the unique needs of Sandhills residents.`
+  },
+  {
+    q: `How quickly can you pick up in ${cityName}?`,
+    a: `We typically offer next-day pickup for ${cityName} and Moore County, with same-day service sometimes available depending on our route. We cover all areas of ${cityName} including the historic district and surrounding rural properties.`
+  },
+  {
+    q: `What types of vehicles do you buy in the Sandhills area?`,
+    a: `We buy all types—cars, trucks, SUVs, vans, and even some farm equipment. Whether it's a daily driver that finally quit, an old golf cart (street legal types), or a vehicle that's been sitting on your property for years, we'll make an offer.`
+  },
+  {
+    q: `Do you work with golf courses or businesses in ${cityName}?`,
+    a: `Yes, we offer business vehicle removal services for golf courses, resorts, maintenance companies, and other businesses in the ${cityName} area. We can handle fleet vehicles, maintenance equipment, and bulk pickups.`
+  }
+];
+
+const coverageAreas = [
+  'Carthage Historic District',
+  'Pinehurst Area',
+  'Southern Pines',
+  'Aberdeen',
+  'West End',
+  'All Moore County'
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="local"
+    location={cityName}
+    showForm={true}
+    formType="consumer"
+  />
+
+  <!-- Local Content -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Cash for Junk Cars in {cityName}, NC</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            {cityName}, the county seat of Moore County, sits in the heart of North Carolina's Sandhills 
+            region. Whether you're a longtime resident near the historic courthouse or live on one 
+            of the rural roads winding through the pine forests, MG Salvage provides fast, reliable 
+            junk car removal throughout the area.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            We also serve the surrounding resort communities of Pinehurst and Southern Pines, 
+            understanding the unique mix of residential, golf course, and rural properties in 
+            the Moore County area. Free towing and competitive prices—that's what we deliver.
+          </p>
+
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <h4 class="font-semibold text-charcoal-900 mb-3">Areas We Cover in Moore County:</h4>
+            <div class="flex flex-wrap gap-2">
+              {coverageAreas.map(area => (
+                <span class="bg-white px-3 py-1 rounded-full text-sm text-charcoal-700 border border-charcoal-200">
+                  {area}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Get Your {cityName} Quote</h3>
+          <ConsumerEstimateForm location={cityName} showTitle={false} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sandhills Section -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-charcoal-100">
+            <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-charcoal-950 mb-4">Serving the Sandhills</h3>
+            <p class="text-charcoal-600 mb-4">
+              From the historic streets of {cityName} to the golf courses of Pinehurst and the 
+              horse country around Southern Pines, we know the Moore County area.
+            </p>
+            <ul class="space-y-2 text-charcoal-600">
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Local knowledge of Moore County roads
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Experience with gated communities
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Business services for golf courses & resorts
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Rural property access expertise
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">The Sandhills' Trusted Junk Car Buyer</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            The Sandhills region is unique—rolling pine forests, world-class golf courses, 
+            historic towns, and a mix of residential, agricultural, and resort properties. 
+            We've built our service to accommodate all of these environments.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            Whether you need to clear an old vehicle from your property near the {cityName} 
+            courthouse, dispose of maintenance equipment for a golf course, or remove a car 
+            from a rural estate, we have the experience and equipment to handle it professionally.
+          </p>
+          
+          <div class="bg-brand-orange/5 rounded-xl p-6 border border-brand-orange/20">
+            <p class="text-charcoal-700">
+              <strong>Business owners in Moore County:</strong> We offer specialized services 
+              for golf courses, resorts, maintenance companies, and agricultural operations. 
+              Call us to discuss bulk pickups or recurring vehicle removal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local FAQs -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-8">{cityName} & Moore County FAQs</h2>
+
+        <div class="space-y-4">
+          {localFaqs.map((faq, index) => (
+            <details class="bg-charcoal-50 rounded-xl border border-charcoal-100 group">
+              <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                <span class="font-semibold text-charcoal-900 pr-4">{faq.q}</span>
+                <span class="w-8 h-8 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center flex-shrink-0 group-open:rotate-180 transition-transform">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-charcoal-600">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="/faq" class="inline-flex items-center text-brand-orange font-medium hover:text-brand-orange-dark">
+            View all FAQs
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby Areas -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-8">Also Serving Sandhills Communities</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {nearbyAreas.map(area => (
+          <a 
+            href={`/cities/${area.slug}`}
+            class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow border border-charcoal-100"
+          >
+            <div class="font-semibold text-charcoal-900">{area.name}</div>
+            <div class="text-sm text-charcoal-500">{area.distance}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks variant="consumer" />
+  <TestimonialsSection />
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-br from-charcoal-900 to-graphite-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Sell Your Junk Car in {cityName} Today</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Free towing, fair prices, and professional service throughout Moore County.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Get My Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

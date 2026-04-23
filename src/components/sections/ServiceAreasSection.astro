@@ -1,0 +1,109 @@
+---
+import { SERVICE_AREAS } from '../../utils/constants';
+---
+
+<section class="section-padding bg-white">
+  <div class="container-content">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Content -->
+      <div>
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">
+          Serving Sanford & Surrounding Areas
+        </h2>
+        <p class="text-body-lg text-charcoal-600 mb-6">
+          Headquartered in Sanford, NC, we provide vehicle pickup and salvage services across a 50-mile radius. 
+          If you're near any of these areas, we can help.
+        </p>
+        <p class="text-charcoal-600 mb-8">
+          Don't see your city? Call us anyway—if you're within our service range, we'll come to you. 
+          We regularly service locations throughout Lee, Cumberland, Chatham, Harnett, and Moore counties.
+        </p>
+        
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          {SERVICE_AREAS.slice(0, 6).map(area => (
+            <a 
+              href={`/areas/${area.slug}`}
+              class="flex items-center gap-2 text-charcoal-700 hover:text-brand-orange transition-colors group"
+            >
+              <svg class="w-4 h-4 text-charcoal-400 group-hover:text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span class="font-medium">{area.name}</span>
+              <span class="text-xs text-charcoal-400">({area.distance})</span>
+            </a>
+          ))}
+        </div>
+        
+        <a href="/service-areas" class="btn-outline">
+          View All Service Areas
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+      
+      <!-- Map Placeholder -->
+      <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+        <div class="aspect-square bg-white rounded-xl shadow-inner flex items-center justify-center relative overflow-hidden">
+          {/* Abstract Map Visualization */}
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Background */}
+            <rect width="400" height="400" fill="#f7f7f8" />
+            
+            {/* Roads */}
+            <path d="M0 200 H400" stroke="#e0dde2" stroke-width="4" />
+            <path d="M200 0 V400" stroke="#e0dde2" stroke-width="4" />
+            <path d="M0 0 L400 400" stroke="#e0dde2" stroke-width="2" stroke-dasharray="8 8" />
+            <path d="M400 0 L0 400" stroke="#e0dde2" stroke-width="2" stroke-dasharray="8 8" />
+            
+            {/* Service radius circle */}
+            <circle cx="200" cy="200" r="150" fill="#e85d04" fill-opacity="0.1" stroke="#e85d04" stroke-width="2" stroke-dasharray="4 4" />
+            <circle cx="200" cy="200" r="100" fill="#e85d04" fill-opacity="0.15" />
+            
+            {/* Sanford HQ */}
+            <circle cx="200" cy="200" r="8" fill="#e85d04" />
+            <circle cx="200" cy="200" r="12" stroke="#e85d04" stroke-width="2" fill="none" />
+            <text x="215" y="205" font-family="system-ui" font-size="14" font-weight="600" fill="#1a191b">Sanford (HQ)</text>
+            
+            {/* Other cities */}
+            <g fill="#433f44">
+              <circle cx="280" cy="140" r="4" />
+              <text x="290" y="145" font-family="system-ui" font-size="12" fill="#5b5560">Carthage</text>
+              
+              <circle cx="320" cy="240" r="4" />
+              <text x="330" y="245" font-family="system-ui" font-size="12" fill="#5b5560">Fayetteville</text>
+              
+              <circle cx="100" cy="120" r="4" />
+              <text x="110" y="125" font-family="system-ui" font-size="12" fill="#5b5560">Pittsboro</text>
+              
+              <circle cx="120" cy="300" r="4" />
+              <text x="130" y="305" font-family="system-ui" font-size="12" fill="#5b5560">Lillington</text>
+              
+              <circle cx="260" cy="100" r="4" />
+              <text x="270" y="105" font-family="system-ui" font-size="12" fill="#5b5560">Southern Pines</text>
+            </g>
+            
+            {/* Legend */}
+            <g transform="translate(20, 360)">
+              <circle cx="8" cy="8" r="6" fill="#e85d04" />
+              <text x="22" y="13" font-family="system-ui" font-size="12" fill="#5b5560">HQ / Sanford</text>
+              
+              <circle cx="120" cy="8" r="4" fill="#433f44" />
+              <text x="132" y="13" font-family="system-ui" font-size="12" fill="#5b5560">Service Areas</text>
+              
+              <circle cx="240" cy="8" r="15" fill="none" stroke="#e85d04" stroke-width="1" stroke-dasharray="2 2" />
+              <text x="262" y="13" font-family="system-ui" font-size="12" fill="#5b5560">50-Mile Radius</text>
+            </g>
+          </svg>
+        </div>
+        
+        <div class="mt-4 text-center">
+          <p class="text-sm text-charcoal-600">
+            <strong>50-mile service radius</strong> from Sanford, NC headquarters
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

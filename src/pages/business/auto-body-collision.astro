@@ -1,0 +1,250 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import BusinessForm from '../../components/forms/BusinessForm.astro';
+import { BUSINESS, SEO, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const title = 'Auto Body & Collision Center Vehicle Removal | MG Salvage';
+const description = 'Total loss vehicle pickup for auto body shops and collision centers. Insurance write-offs, salvage vehicles, and damaged car removal. Fast, professional service.';
+const keywords = 'collision center vehicle removal, body shop salvage, total loss pickup, insurance write off removal, auto body vehicle disposal NC';
+
+const schema = {
+  '@type': 'Service',
+  name: 'Auto Body & Collision Center Vehicle Removal',
+  provider: ORGANIZATION_SCHEMA,
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Auto Body Shops and Collision Centers'
+  },
+  description: description
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Business', url: '/business-vehicle-removal' },
+  { name: 'Auto Body & Collision', url: '/business/auto-body-collision' }
+];
+
+const bodyShopServices = [
+  {
+    title: 'Total Loss Vehicles',
+    description: 'Insurance-declared totals that owners have signed over. We handle the paperwork and pickup promptly.',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
+    title: 'Customer Declined Repairs',
+    description: 'Vehicles where customers decided not to proceed with repairs after estimates.',
+    icon: 'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Salvage Parts Vehicles',
+    description: 'Damaged vehicles you've kept for parts that are no longer needed.',
+    icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+  },
+  {
+    title: 'Storage Lot Clearing',
+    description: 'Clear accumulated vehicles from your storage lot to make room for new work.',
+    icon: 'M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z'
+  },
+  {
+    title: 'Insurance Coordination',
+    description: 'We can work directly with insurance companies on salvage vehicle transfers.',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+  },
+  {
+    title: 'Flood & Fire Damage',
+    description: 'Specialized handling of severely damaged vehicles including flood and fire casualties.',
+    icon: 'M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z'
+  }
+];
+
+const insuranceWorkflow = [
+  { step: 'Vehicle Arrives', desc: 'Customer brings damaged vehicle or it is towed to your facility' },
+  { step: 'Estimate Written', desc: 'You provide repair estimate to customer/insurance' },
+  { step: 'Declared Total Loss', desc: 'Vehicle determined to be uneconomical to repair' },
+  { step: 'Title Signed Over', desc: 'Owner signs title to insurance company' },
+  { step: 'Contact MG Salvage', desc: 'We pickup vehicle and pay salvage value' },
+  { step: 'Paperwork Completed', desc: 'We handle title transfer and documentation' }
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="business"
+    title="Auto Body & Collision Center Vehicle Removal"
+    subtitle="Total Loss & Insurance Write-Off Specialists"
+    showForm={false}
+  />
+
+  <!-- Introduction -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Specialized for Collision Centers</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            Auto body shops deal with a unique challenge: insurance-declared total losses and customer 
+            vehicles that aren't worth repairing. These vehicles take up valuable lot space and can 
+            become a liability if left too long.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            MG Salvage works directly with body shops and collision centers across central NC to remove 
+            these vehicles quickly, handle all documentation properly, and ensure you get fair salvage value.
+          </p>
+
+          <div class="flex items-center gap-4 p-4 bg-brand-orange/5 rounded-lg border border-brand-orange/20">
+            <svg class="w-8 h-8 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <div>
+              <div class="font-semibold text-charcoal-900">Fast Response Times</div>
+              <div class="text-sm text-charcoal-600">Most pickups scheduled within 24-48 hours</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Request Pickup</h3>
+          <BusinessForm defaultType="bodyshop" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Services for Collision Centers</h2>
+        <p class="text-charcoal-600">
+          Comprehensive solutions for the specific needs of auto body and collision repair facilities.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {bodyShopServices.map(service => (
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-charcoal-100">
+            <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.icon} />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-charcoal-900 mb-2">{service.title}</h3>
+            <p class="text-charcoal-600 text-sm">{service.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Insurance Workflow -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-4">Insurance Total Loss Workflow</h2>
+        <p class="text-charcoal-600 text-center mb-12">
+          Understanding how we fit into your total loss process helps streamline operations.
+        </p>
+
+        <div class="relative">
+          <!-- Connecting Line -->
+          <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-charcoal-200 hidden md:block"></div>
+
+          <div class="space-y-8">
+            {insuranceWorkflow.map((item, index) => (
+              <div class="relative flex gap-6 items-start">
+                <div class="w-16 h-16 bg-brand-orange text-white rounded-full flex items-center justify-center flex-shrink-0 relative z-10 font-bold text-xl">
+                  {index + 1}
+                </div>
+                <div class="flex-1 pt-2">
+                  <h4 class="text-lg font-semibold text-charcoal-900 mb-1">{item.step}</h4>
+                  <p class="text-charcoal-600">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="section-padding bg-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-white mb-6">Why Collision Centers Trust Us</h2>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-charcoal-300">Licensed NC salvage dealer—proper documentation guaranteed</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-charcoal-300">Professional tow operators experienced with damaged vehicles</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-charcoal-300">Fair salvage valuations based on current market</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-charcoal-300">Quick turnaround—vehicles gone within 48 hours</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-charcoal-300">We handle title transfers and salvage documentation</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white/5 rounded-2xl p-8 border border-white/10">
+          <blockquote class="text-xl text-white italic mb-6">
+            "MG Salvage has been our go-to for total loss pickups for over 2 years. 
+            They're fast, professional, and handle all the paperwork correctly."
+          </blockquote>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center text-white font-bold">
+              JD
+            </div>
+            <div>
+              <div class="font-semibold text-white">John D.</div>
+              <div class="text-charcoal-400 text-sm">Collision Center Manager, Sanford NC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-br from-graphite-600 to-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Ready to Clear Your Lot?</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Get a quote for your total loss vehicles and storage lot clearing needs.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary text-lg py-4 px-8" onclick="document.querySelector('form').scrollIntoView({behavior: 'smooth'}); return false;">
+            Request Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,203 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import HowItWorks from '../../components/sections/HowItWorks.astro';
+import TestimonialsSection from '../../components/sections/TestimonialsSection.astro';
+import ConsumerEstimateForm from '../../components/forms/ConsumerEstimateForm.astro';
+import { BUSINESS, SERVICE_AREAS, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const cityName = 'Southern Pines';
+const citySlug = 'southern-pines';
+const title = `Cash for Junk Cars ${cityName} NC | Free Towing | Moore County`;
+const description = `Get cash for your junk car in ${cityName}, NC. Free towing, same-day pickup available. Serving the Sandhills and Moore County. Call (919) 777-5427.`;
+const keywords = `cash for junk cars southern pines, junk car removal southern pines, sell my junk car southern pines, free towing moore county, vehicle salvage southern pines nc`;
+
+const schema = {
+  '@type': 'LocalBusiness',
+  name: `MG Salvage - ${cityName}`,
+  description: description,
+  url: `https://mgsalvage.com/cities/${citySlug}`,
+  telephone: BUSINESS.phone,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: cityName,
+    addressRegion: 'NC',
+    addressCountry: 'US'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '35.1740',
+    longitude: '-79.3923'
+  },
+  areaServed: {
+    '@type': 'City',
+    name: cityName,
+    containedInPlace: {
+      '@type': 'State',
+      name: 'North Carolina'
+    }
+  }
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Service Areas', url: '/areas' },
+  { name: cityName, url: `/cities/${citySlug}` }
+];
+
+const nearbyAreas = SERVICE_AREAS.filter(a => ['Pinehurst', 'Aberdeen', 'Carthage', 'Sanford'].includes(a.name));
+
+const localFaqs = [
+  {
+    q: `Do you service gated communities in ${cityName}?`,
+    a: `Yes, we regularly service gated communities throughout ${cityName} and the surrounding Sandhills area. Just let us know the community name and any access requirements when you schedule your pickup, and we'll coordinate entry according to your community's protocols.`
+  },
+  {
+    q: `Do you work with golf courses and equestrian facilities?`,
+    a: `Absolutely. We provide business vehicle removal services for golf courses, equestrian centers, and other facilities in the ${cityName} area. We can handle maintenance vehicles, gators, and equipment disposal with minimal disruption to your operations.`
+  },
+  {
+    q: `How quickly can you pick up in ${cityName}?`,
+    a: `We typically offer next-day pickup for ${cityName} and the Moore County Sandhills area. We cover all neighborhoods including the historic district, country club areas, and surrounding rural properties.`
+  },
+  {
+    q: `Do you buy farm and estate vehicles?`,
+    a: `Yes, we purchase estate vehicles, farm trucks, and equipment commonly found on the larger properties around ${cityName}. This includes older trucks, SUVs, and utility vehicles that may no longer be running.`
+  }
+];
+
+const coverageAreas = [
+  'Historic Southern Pines',
+  'Country Club Communities',
+  'Mid Pines Road Area',
+  'Gated Communities',
+  'Estate Properties',
+  'All Moore County Sandhills'
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="local"
+    location={cityName}
+    showForm={true}
+    formType="consumer"
+  />
+
+  <!-- Local Content -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Cash for Junk Cars in {cityName}, NC</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            {cityName} is one of the jewels of North Carolina's Sandhills region—known for its golf, 
+            equestrian culture, and charming historic downtown. Whether you're in one of the town's 
+            prestigious gated communities, on an estate property, or in a historic neighborhood, 
+            MG Salvage provides discreet, professional junk car removal.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            We understand that {cityName} residents expect a higher level of service. Our 
+            professional team arrives on time, in professional vehicles, and handles your vehicle 
+            removal with minimal disruption to your property or neighborhood.
+          </p>
+
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <h4 class="font-semibold text-charcoal-900 mb-3">Areas We Cover in {cityName}:</h4>
+            <div class="flex flex-wrap gap-2">
+              {coverageAreas.map(area => (
+                <span class="bg-white px-3 py-1 rounded-full text-sm text-charcoal-700 border border-charcoal-200">
+                  {area}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Get Your {cityName} Quote</h3>
+          <ConsumerEstimateForm location={cityName} showTitle={false} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local FAQs -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-8">{cityName} Area FAQs</h2>
+
+        <div class="space-y-4">
+          {localFaqs.map((faq, index) => (
+            <details class="bg-white rounded-xl border border-charcoal-100 group">
+              <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                <span class="font-semibold text-charcoal-900 pr-4">{faq.q}</span>
+                <span class="w-8 h-8 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center flex-shrink-0 group-open:rotate-180 transition-transform">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-charcoal-600">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="/faq" class="inline-flex items-center text-brand-orange font-medium hover:text-brand-orange-dark">
+            View all FAQs
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby Areas -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-8">Also Serving Sandhills Communities</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {nearbyAreas.map(area => (
+          <a 
+            href={`/cities/${area.slug}`}
+            class="bg-charcoal-50 rounded-lg p-4 text-center hover:bg-charcoal-100 transition-colors border border-charcoal-100"
+          >
+            <div class="font-semibold text-charcoal-900">{area.name}</div>
+            <div class="text-sm text-charcoal-500">{area.distance}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks variant="consumer" />
+  <TestimonialsSection />
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-br from-charcoal-900 to-graphite-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Sell Your Junk Car in {cityName} Today</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Professional, discreet service throughout the Sandhills.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Get My Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

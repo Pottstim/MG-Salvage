@@ -1,0 +1,216 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import HowItWorks from '../../components/sections/HowItWorks.astro';
+import TestimonialsSection from '../../components/sections/TestimonialsSection.astro';
+import ConsumerEstimateForm from '../../components/forms/ConsumerEstimateForm.astro';
+import { BUSINESS, SERVICE_AREAS, SEO, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const title = 'Junk Car Removal | Free Towing & Same-Day Pickup | MG Salvage';
+const description = 'Fast, professional junk car removal in Sanford, NC and surrounding areas. Free towing, cash on pickup, title help available. Call (919) 777-5427 for immediate pickup.';
+const keywords = 'junk car removal, free towing, same day pickup, junk car tow, vehicle removal, Sanford NC, Fayetteville, Pittsboro';
+
+const schema = {
+  '@type': 'Service',
+  name: 'Junk Car Removal',
+  provider: ORGANIZATION_SCHEMA,
+  description: description,
+  areaServed: SERVICE_AREAS.map(a => ({ '@type': 'City', name: a.name })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Junk Car Removal Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Free Towing for Junk Cars'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Same-Day Pickup Available'
+        }
+      }
+    ]
+  }
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services/junk-car-removal' },
+  { name: 'Junk Car Removal', url: '/services/junk-car-removal' }
+];
+
+const coverageAreas = SERVICE_AREAS.filter(a => ['Sanford', 'Fayetteville', 'Pittsboro', 'Carthage', 'Lillington'].includes(a.name));
+
+const removalFeatures = [
+  { title: 'Free Towing', description: 'We cover all towing costs—no deductions from your payment' },
+  { title: 'Any Condition', description: 'Running or not, damaged, totaled—we take them all' },
+  { title: 'Quick Response', description: 'Average 30-minute callback, same-day pickup often available' },
+  { title: 'Title Help', description: 'Lost title? No problem. We guide you through the paperwork' },
+  { title: 'Cash on Pickup', description: 'Get paid when we arrive—no waiting for checks to clear' },
+  { title: 'Licensed & Insured', description: 'Fully licensed salvage operation in North Carolina' }
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="consumer"
+    title="Junk Car Removal With Free Towing"
+    subtitle="Professional Pickup Across Central NC"
+    showForm={true}
+    formType="consumer"
+  />
+
+  <!-- Features Grid -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Why Choose MG Salvage for Removal?</h2>
+        <p class="text-body-lg text-charcoal-600">
+          Professional service that respects your time and gets you the best value for your vehicle.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {removalFeatures.map(feature => (
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <h3 class="text-xl font-semibold text-charcoal-900 mb-2">{feature.title}</h3>
+            <p class="text-charcoal-600">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Areas -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Areas We Cover</h2>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            We provide junk car removal throughout Lee County and surrounding areas. 
+            Whether you're in downtown Sanford or a rural property, we come to you.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mb-8">
+            {coverageAreas.map(area => (
+              <a 
+                href={`/cities/${area.slug}`}
+                class="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border border-charcoal-100"
+              >
+                <div class="w-10 h-10 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-charcoal-900">{area.name}</div>
+                  <div class="text-sm text-charcoal-500">{area.county} County</div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <a href="/areas" class="inline-flex items-center text-brand-orange font-medium hover:text-brand-orange-dark">
+            View all service areas
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Request Pickup</h3>
+          <ConsumerEstimateForm showTitle={false} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vehicle Condition Examples -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">We Remove Vehicles In Any Condition</h2>
+        <p class="text-charcoal-600">
+          Don't worry about your vehicle's condition—we've seen it all and we buy them all.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center p-6">
+          <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Running & Driving</h4>
+          <p class="text-sm text-charcoal-600">Older vehicles that still run but aren't worth repairing</p>
+        </div>
+
+        <div class="text-center p-6">
+          <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Won't Start</h4>
+          <p class="text-sm text-charcoal-600">Engine problems, electrical issues, seized motors</p>
+        </div>
+
+        <div class="text-center p-6">
+          <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">Totaled / Damaged</h4>
+          <p class="text-sm text-charcoal-600">Accident damage, flood damage, fire damage</p>
+        </div>
+
+        <div class="text-center p-6">
+          <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h4 class="font-semibold text-charcoal-900 mb-2">No Title</h4>
+          <p class="text-sm text-charcoal-600">Lost title, abandoned vehicles, incomplete paperwork</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <HowItWorks variant="consumer" />
+
+  <!-- Testimonials -->
+  <TestimonialsSection />
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-br from-charcoal-900 to-graphite-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Ready for Pickup?</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Get a free quote and schedule your junk car removal today. Free towing included.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Get My Estimate
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

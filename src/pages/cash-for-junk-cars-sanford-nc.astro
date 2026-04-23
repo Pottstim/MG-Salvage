@@ -1,0 +1,225 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ConsumerEstimateForm from '../components/forms/ConsumerEstimateForm.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
+import { SERVICE_AREAS, SEO, ORGANIZATION_SCHEMA } from '../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const city = 'Sanford';
+const title = `Cash for Junk Cars ${city} NC | Same-Day Pickup & Free Towing`;
+const description = `Get cash for your junk car in ${city}, NC. Free towing, same-day pickup available. We buy running, non-running, and totaled vehicles. Serving ${city} and surrounding areas with professional vehicle removal.`;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: `Cash for Junk Cars ${city} NC`, url: `/cash-for-junk-cars-sanford-nc` }
+];
+
+const pageSchema = {
+  '@type': 'WebPage',
+  name: title,
+  description: description,
+  url: `https://mgsalvage.com/cash-for-junk-cars-sanford-nc`,
+  mainEntity: {
+    '@type': 'LocalBusiness',
+    name: `MG Salvage - ${city}`,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: city,
+      addressRegion: 'NC'
+    }
+  }
+};
+
+const nearbyCities = SERVICE_AREAS.filter(a => a.slug !== 'sanford').slice(0, 6);
+---
+
+<MainLayout
+  title={title}
+  description={description}
+  keywords={`${SEO.keywords}, cash for junk cars ${city.toLowerCase()}, junk car removal ${city.toLowerCase()}, sell my car ${city.toLowerCase()} nc`}
+  schema={[ORGANIZATION_SCHEMA, pageSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  {/* Local SEO Hero */}
+  <section class="bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-graphite-900 text-white py-16 lg:py-24">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="flex items-center gap-2 text-brand-orange">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span class="font-medium">{city}, NC</span>
+          </div>
+          
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+            Cash for Junk Cars in {city}, NC
+          </h1>
+          
+          <p class="text-xl text-charcoal-300 max-w-xl">
+            Local junk car buyer in {city}. Free towing, same-day pickup, cash on the spot. 
+            We serve all {city} neighborhoods and surrounding Lee County.
+          </p>
+          
+          <div class="flex flex-wrap gap-4">
+            <span class="flex items-center gap-2 text-sm">
+              <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              {city} based
+            </span>
+            <span class="flex items-center gap-2 text-sm">
+              <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Serving all neighborhoods
+            </span>
+            <span class="flex items-center gap-2 text-sm">
+              <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Lee County coverage
+            </span>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+          <ConsumerEstimateForm location={city} showTitle={true} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Local Services */}
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Junk Car Services in {city}</h2>
+        <p class="text-charcoal-600">
+          Based in {city}, we provide fast, reliable vehicle removal throughout the city and Lee County.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-charcoal-50 rounded-xl p-6 text-center">
+          <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-charcoal-950 mb-2">Cash for Cars</h3>
+          <p class="text-charcoal-600 text-sm">
+            Competitive cash offers for vehicles in any condition. Payment on pickup in {city}.
+          </p>
+        </div>
+        
+        <div class="bg-charcoal-50 rounded-xl p-6 text-center">
+          <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-charcoal-950 mb-2">Free Towing</h3>
+          <p class="text-charcoal-600 text-sm">
+            Complimentary towing from any {city} location. Driveway, street, or business lot.
+          </p>
+        </div>
+        
+        <div class="bg-charcoal-50 rounded-xl p-6 text-center">
+          <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-charcoal-950 mb-2">Paperwork Help</h3>
+          <p class="text-charcoal-600 text-sm">
+            Title assistance and NC DMV paperwork handled. We make the process simple.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Local Context */}
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">
+            Your Local {city} Junk Car Buyer
+          </h2>
+          <p class="text-charcoal-600 mb-4">
+            MG Salvage is headquartered in {city}, NC at 1230 N Chapel St. We're your neighbors, 
+            not a national call center. When you contact us, you're talking to someone who 
+            knows {city}—from the Tramway Road corridor to the historic downtown, from 
+            Carolina Trace to the neighborhoods near Central Carolina Community College.
+          </p>
+          <p class="text-charcoal-600 mb-4">
+            We understand {city}'s mix of rural and suburban areas. Whether your vehicle is 
+            on a paved driveway in a subdivision or down a country road in the outskirts 
+            of Lee County, we'll come to you.
+          </p>
+          <p class="text-charcoal-600 mb-6">
+            Our local knowledge means faster service. We know the roads, the traffic patterns, 
+            and we can often provide same-day pickup anywhere in the {city} area.
+          </p>
+          
+          <a href={formatPhoneLink('(919) 777-5427')} class="btn-primary">
+            Call Your Local Buyer
+          </a>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h4 class="font-semibold text-charcoal-950 mb-2">Quick {city} Service Facts:</h4>
+            <ul class="space-y-2 text-charcoal-600">
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Same-day pickup often available
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Service all {city} zip codes: 27330, 27331, 27332
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                We know {city}'s neighborhoods and roads
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Local business, not a chain
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-brand-orange/5 border border-brand-orange/20 rounded-xl p-6">
+            <h4 class="font-semibold text-charcoal-950 mb-2">Nearby Areas We Serve:</h4>
+            <div class="flex flex-wrap gap-2">
+              {nearbyCities.map(area => (
+                <a 
+                  href={`/areas/${area.slug}`}
+                  class="text-sm bg-white px-3 py-1 rounded-full text-charcoal-700 hover:bg-brand-orange hover:text-white transition-colors"
+                >
+                  {area.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks variant="consumer" />
+  <TestimonialsSection />
+</MainLayout>

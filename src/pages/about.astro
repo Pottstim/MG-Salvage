@@ -1,0 +1,323 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import { BUSINESS, ORGANIZATION_SCHEMA } from '../utils/constants';
+import { formatPhoneLink } from '../utils/helpers';
+
+const title = 'About Us | How MG Salvage Works | Sanford, NC';
+const description = 'Learn about MG Salvage, central NC\'s trusted junk car buyer. Licensed, professional vehicle removal serving Sanford, Fayetteville, and surrounding areas. Call (919) 777-5427.';
+const keywords = 'about MG Salvage, junk car buyer NC, vehicle salvage company, who we are, car removal company NC, professional salvage service';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'About', url: '/about' }
+];
+
+const values = [
+  {
+    title: 'Integrity',
+    description: 'We do what we say. Our quotes are fair and we never deduct hidden fees at pickup.',
+    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Professionalism',
+    description: 'Licensed, insured, and experienced. We treat you and your property with respect.',
+    icon: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+  },
+  {
+    title: 'Efficiency',
+    description: 'Your time is valuable. We respond quickly and complete pickups fast.',
+    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Local Service',
+    description: 'We\'re based in Sanford and serve our local community with pride.',
+    icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+  }
+];
+
+const stats = [
+  { value: '500+', label: 'Happy Customers' },
+  { value: '30min', label: 'Avg. Response Time' },
+  { value: '50mi', label: 'Service Radius' },
+  { value: '4.9/5', label: 'Customer Rating' }
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} breadcrumbs={breadcrumbs}>
+  <!-- Hero -->
+  <section class="section-padding bg-gradient-to-br from-charcoal-900 to-graphite-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-display-lg font-bold text-white mb-6">About MG Salvage</h1>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Central North Carolina's trusted partner for professional vehicle removal. 
+          Licensed, local, and committed to fair, honest service.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Get a Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Our Story</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            MG Salvage was founded with a simple mission: provide central North Carolina with a 
+            better way to sell junk cars. We saw too many people struggling to dispose of old 
+            vehicles—dealing with unreliable buyers, hidden fees, and frustrating processes.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            Based in Sanford, NC, we built our business on the principles of honesty, efficiency, 
+            and professional service. What started as a local operation has grown to serve 
+            communities throughout Lee, Cumberland, Chatham, Moore, and Harnett counties.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            Today, we serve both individual sellers and businesses across central NC. From 
+            single junk car pickups to large-scale business lot clearing, we bring the same 
+            commitment to fair pricing and professional service to every job.
+          </p>
+
+          <div class="flex items-center gap-4 p-4 bg-brand-orange/5 rounded-lg border border-brand-orange/20">
+            <svg class="w-12 h-12 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <div>
+              <div class="font-semibold text-charcoal-900">Licensed & Insured</div>
+              <div class="text-sm text-charcoal-600">North Carolina Licensed Salvage Dealer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-charcoal-50 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-brand-orange mb-2">500+</div>
+            <div class="text-charcoal-700">Happy Customers</div>
+          </div>
+          <div class="bg-charcoal-50 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-brand-orange mb-2">5</div>
+            <div class="text-charcoal-700">Counties Served</div>
+          </div>
+          <div class="bg-charcoal-50 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-brand-orange mb-2">30min</div>
+            <div class="text-charcoal-700">Avg. Response</div>
+          </div>
+          <div class="bg-charcoal-50 rounded-2xl p-6 text-center">
+            <div class="text-4xl font-bold text-brand-orange mb-2">24/7</div>
+            <div class="text-charcoal-700">Availability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Our Values</h2>
+        <p class="text-charcoal-600">
+          The principles that guide every interaction and transaction.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map(value => (
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-charcoal-100">
+            <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={value.icon} />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-charcoal-900 mb-2">{value.title}</h3>
+            <p class="text-charcoal-600 text-sm">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <HowItWorks variant="consumer" />
+
+  <!-- Business Approach -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="bg-charcoal-50 rounded-2xl p-8">
+            <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Why Choose MG Salvage?</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <div class="font-semibold text-charcoal-900">Local & Accountable</div>
+                  <div class="text-sm text-charcoal-600">We're based in Sanford and serve our neighbors. Our reputation matters here.</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <div class="font-semibold text-charcoal-900">No Hidden Fees</div>
+                  <div class="text-sm text-charcoal-600">The quote we give is what you get. Free towing, no last-minute deductions.</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <div class="font-semibold text-charcoal-900">Professional Service</div>
+                  <div class="text-sm text-charcoal-600">Licensed, insured, and experienced. We handle vehicles and paperwork properly.</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <div class="font-semibold text-charcoal-900">Fast Response</div>
+                  <div class="text-sm text-charcoal-600">Quotes within 30 minutes. Same-day pickup often available.</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <div class="font-semibold text-charcoal-900">All Conditions Accepted</div>
+                  <div class="text-sm text-charcoal-600">Running or not, damaged, totaled—we take them all.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Who We Serve</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            We serve two primary audiences, with tailored services for each:
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+              <h3 class="text-xl font-semibold text-charcoal-900 mb-3 flex items-center gap-2">
+                <svg class="w-6 h-6 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                Individual Sellers
+              </h3>
+              <p class="text-charcoal-600 mb-4">
+                People selling personal vehicles that are no longer running, too expensive to repair, 
+                or simply taking up space. We make the process quick, easy, and profitable.
+              </p>
+              <a href="/sell-your-junk-car" class="text-brand-orange font-medium hover:text-brand-orange-dark inline-flex items-center">
+                Sell Your Car
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+              <h3 class="text-xl font-semibold text-charcoal-900 mb-3 flex items-center gap-2">
+                <svg class="w-6 h-6 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                Businesses
+              </h3>
+              <p class="text-charcoal-600 mb-4">
+                Mechanic shops, auto body shops, used car dealers, and other businesses that need 
+                reliable, professional vehicle removal. We understand business needs and deliver accordingly.
+              </p>
+              <a href="/business-vehicle-removal" class="text-brand-orange font-medium hover:text-brand-orange-dark inline-flex items-center">
+                Business Services
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area -->
+  <section class="section-padding bg-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-display-md font-bold text-white mb-4">Serving Central North Carolina</h2>
+        <p class="text-charcoal-300">
+          Based in Sanford, we regularly serve Lee, Cumberland, Chatham, Moore, and Harnett counties.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="bg-white/5 rounded-xl p-6 text-center border border-white/10">
+          <div class="text-2xl font-bold text-brand-orange mb-1">Lee</div>
+          <div class="text-sm text-charcoal-400">County</div>
+        </div>
+        <div class="bg-white/5 rounded-xl p-6 text-center border border-white/10">
+          <div class="text-2xl font-bold text-brand-orange mb-1">Cumberland</div>
+          <div class="text-sm text-charcoal-400">County</div>
+        </div>
+        <div class="bg-white/5 rounded-xl p-6 text-center border border-white/10">
+          <div class="text-2xl font-bold text-brand-orange mb-1">Chatham</div>
+          <div class="text-sm text-charcoal-400">County</div>
+        </div>
+        <div class="bg-white/5 rounded-xl p-6 text-center border border-white/10">
+          <div class="text-2xl font-bold text-brand-orange mb-1">Moore</div>
+          <div class="text-sm text-charcoal-400">County</div>
+        </div>
+        <div class="bg-white/5 rounded-xl p-6 text-center border border-white/10">
+          <div class="text-2xl font-bold text-brand-orange mb-1">Harnett</div>
+          <div class="text-sm text-charcoal-400">County</div>
+        </div>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/areas" class="text-brand-orange hover:text-brand-orange-light inline-flex items-center">
+          View All Service Areas
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-br from-graphite-600 to-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Ready to Work With Us?</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Experience the MG Salvage difference. Get a free quote today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Get a Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

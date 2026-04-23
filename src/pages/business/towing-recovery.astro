@@ -1,0 +1,367 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import BusinessForm from '../../components/forms/BusinessForm.astro';
+import { BUSINESS, SEO, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const title = 'Towing & Recovery Vehicle Processing | MG Salvage';
+const description = 'Professional vehicle processing for towing companies and recovery services. Handle abandoned vehicles, impounds, and insurance totals. Fast pickup and documentation for towing operators across NC.';
+const keywords = 'towing vehicle processing, recovery car removal, abandoned vehicle disposal, impound car buyer, towing company salvage, wrecker service vehicle removal NC';
+
+const schema = {
+  '@type': 'Service',
+  name: 'Towing & Recovery Vehicle Processing',
+  provider: ORGANIZATION_SCHEMA,
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Towing and Recovery Services'
+  },
+  description: description
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Business', url: '/business-vehicle-removal' },
+  { name: 'Towing & Recovery', url: '/business/towing-recovery' }
+];
+
+const towingBenefits = [
+  {
+    title: 'Abandoned Vehicle Solutions',
+    description: 'We handle the complete process for abandoned vehicles, including title assistance and legal documentation requirements.',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
+    title: 'Fast Impound Processing',
+    description: 'Quick turnaround on impound vehicles. We understand lien sale timelines and work within your holding requirements.',
+    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Insurance Totals',
+    description: 'Dispose of insurance total loss vehicles efficiently. We handle the paperwork so you can focus on your next call.',
+    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z'
+  },
+  {
+    title: '24/7 Availability',
+    description: 'We understand towing is a 24/7 business. Flexible scheduling including nights and weekends for your convenience.',
+    icon: 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
+  },
+  {
+    title: 'Title Assistance',
+    description: 'Expert help with abandoned vehicle title processes, lien sales, and documentation requirements in North Carolina.',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
+    title: 'Competitive Pricing',
+    description: 'Fair salvage value for vehicles regardless of condition. We pay for tow fees and provide additional recovery value.',
+    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+  }
+];
+
+const towingScenarios = [
+  {
+    title: 'Abandoned Vehicles',
+    desc: 'Cars left at your lot that owners never claimed or paid for'
+  },
+  {
+    title: 'Impound Lien Sales',
+    desc: 'Vehicles ready for disposal after lien period expires'
+  },
+  {
+    title: 'Insurance Totals',
+    desc: 'Total loss vehicles from accidents youve towed'
+  },
+  {
+    title: 'Unclaimed Accident Cars',
+    desc: 'Vehicles from accidents where owner declined repair'
+  },
+  {
+    title: 'Police Impounds',
+    desc: 'Law enforcement vehicles requiring disposal'
+  },
+  {
+    title: 'Private Property Tows',
+    desc: 'Abandoned vehicles from parking enforcement'
+  }
+];
+
+const processSteps = [
+  {
+    step: '1',
+    title: 'Call or Submit',
+    desc: 'Contact us with vehicle details and situation'
+  },
+  {
+    step: '2',
+    title: 'Documentation Review',
+    desc: 'We review title status and legal requirements'
+  },
+  {
+    step: '3',
+    title: 'Quote & Schedule',
+    desc: 'Receive quote and schedule pickup timing'
+  },
+  {
+    step: '4',
+    title: 'Pickup & Payment',
+    desc: 'We pick up and pay, handling all paperwork'
+  }
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="business"
+    title="Towing & Recovery Processing"
+    subtitle="Abandoned Vehicles • Impounds • Insurance Totals"
+    showForm={false}
+  />
+
+  <!-- Introduction -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Built for Towing Professionals</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            We understand the unique challenges towing and recovery operators face. Abandoned vehicles 
+            taking up lot space, impound lien sales approaching deadlines, and insurance totals requiring 
+            quick disposition—we handle it all with the speed and professionalism your business demands.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            Our team is experienced with North Carolina abandoned vehicle laws, lien sale requirements, 
+            and title documentation processes. We make disposal simple so you can focus on your next call 
+            and growing your business.
+          </p>
+
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <h4 class="font-semibold text-charcoal-900 mb-3">Available For:</h4>
+            <div class="grid grid-cols-2 gap-3">
+              {['24/7 Emergency Pickup', 'Scheduled Lot Clearing', 'Single Vehicles', 'Bulk Fleet Disposal'].map(item => (
+                <div class="flex items-center gap-2 text-sm text-charcoal-700">
+                  <svg class="w-4 h-4 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Request Vehicle Processing</h3>
+          <BusinessForm defaultType="tow" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scenarios Section -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-4">Towing Scenarios We Handle</h2>
+        <p class="text-charcoal-600 text-center mb-12">
+          We work with towing companies on these common situations every day:
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {towingScenarios.map(scenario => (
+            <div class="bg-white rounded-xl p-6 border border-charcoal-100">
+              <div class="w-10 h-10 bg-brand-orange/10 text-brand-orange rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h4 class="font-semibold text-charcoal-900 mb-2">{scenario.title}</h4>
+              <p class="text-charcoal-600 text-sm">{scenario.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 bg-brand-orange/5 rounded-xl p-6 border border-brand-orange/20">
+          <p class="text-charcoal-700 text-center">
+            <strong>Have a unique situation?</strong> We've worked with hundreds of towing operators. 
+            Call us at {BUSINESS.phoneDisplay} to discuss your specific needs and timeline.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Why Towing Companies Choose MG Salvage</h2>
+        <p class="text-charcoal-600">
+          Services designed specifically for the towing and recovery industry.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {towingBenefits.map(benefit => (
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={benefit.icon} />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-charcoal-900 mb-2">{benefit.title}</h3>
+            <p class="text-charcoal-600 text-sm">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal/Compliance Section -->
+  <section class="section-padding bg-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-white mb-6">NC Title & Lien Expertise</h2>
+          <p class="text-charcoal-300 mb-6">
+            North Carolina has specific requirements for abandoned vehicles and lien sales. 
+            Our team is experienced with the process and can help ensure proper documentation.
+          </p>
+
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="font-semibold text-white">Abandoned Vehicle Process</div>
+                <div class="text-charcoal-400 text-sm">Assistance with NC DMV abandoned vehicle documentation</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="font-semibold text-white">Lien Sale Documentation</div>
+                <div class="text-charcoal-400 text-sm">Proper paperwork for post-lien sale vehicle transfer</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="font-semibold text-white">DMV Notification</div>
+                <div class="text-charcoal-400 text-sm">We handle required DMV notifications for liability release</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div class="font-semibold text-white">Title Status Flexibility</div>
+                <div class="text-charcoal-400 text-sm">We can often purchase even with title complications</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white/5 rounded-2xl p-8 border border-white/10">
+          <h3 class="text-xl font-bold text-white mb-6">Quick Facts</h3>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center py-3 border-b border-white/10">
+              <span class="text-charcoal-300">Typical Response Time</span>
+              <span class="font-semibold text-white">Same Day</span>
+            </div>
+            <div class="flex justify-between items-center py-3 border-b border-white/10">
+              <span class="text-charcoal-300">Payment Terms</span>
+              <span class="font-semibold text-white">On Pickup</span>
+            </div>
+            <div class="flex justify-between items-center py-3 border-b border-white/10">
+              <span class="text-charcoal-300">Title Assistance</span>
+              <span class="font-semibold text-white">Included</span>
+            </div>
+            <div class="flex justify-between items-center py-3 border-b border-white/10">
+              <span class="text-charcoal-300">Available Hours</span>
+              <span class="font-semibold text-white">24/7</span>
+            </div>
+            <div class="flex justify-between items-center py-3">
+              <span class="text-charcoal-300">Service Area</span>
+              <span class="font-semibold text-white">Central NC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-12">Our Towing Partner Process</h2>
+
+        <div class="grid md:grid-cols-4 gap-8">
+          {processSteps.map(item => (
+            <div class="text-center">
+              <div class="w-16 h-16 bg-brand-orange text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                {item.step}
+              </div>
+              <h4 class="font-semibold text-charcoal-900 mb-2">{item.title}</h4>
+              <p class="text-charcoal-600 text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-charcoal-100 text-center">
+          <svg class="w-12 h-12 text-brand-orange/30 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          <blockquote class="text-xl text-charcoal-700 italic mb-6">
+            "MG Salvage has been handling our abandoned vehicles for two years. They're fast, 
+            pay fair, and handle all the title headaches. Makes my life a lot easier not having 
+            to worry about that part of the business."
+          </blockquote>
+          <div class="flex items-center justify-center gap-4">
+            <div class="w-12 h-12 bg-charcoal-200 rounded-full flex items-center justify-center text-charcoal-600 font-bold">
+              TJ
+            </div>
+            <div class="text-left">
+              <div class="font-semibold text-charcoal-900">Tom J.</div>
+              <div class="text-sm text-charcoal-500">Owner, County Towing & Recovery</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-br from-graphite-600 to-charcoal-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Ready to Clear Your Lot?</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Get a quote for your abandoned vehicles, impounds, or insurance totals. Fast pickup and professional service.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary text-lg py-4 px-8" onclick="document.querySelector('form').scrollIntoView({behavior: 'smooth'}); return false;">
+            Request Processing Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,100 @@
+---
+import { BUSINESS_TYPES } from '../../utils/constants';
+
+const consumerFeatures = [
+  'Free towing included',
+  'Same-day pickup available',
+  'Cash or check on pickup',
+  'Title assistance provided'
+];
+
+const businessFeatures = [
+  'Scheduled lot clearing',
+  'Recurring pickup plans',
+  'Documentation handled',
+  'Flexible payment terms'
+];
+---
+
+<section class="section-padding bg-charcoal-50">
+  <div class="container-content">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Who We Serve</h2>
+      <p class="text-body-lg text-charcoal-600">
+        Whether you're selling one car or clearing a lot, we have solutions designed for your situation.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <!-- Consumer Path -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 border border-charcoal-100">
+        <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-charcoal-950 mb-3">Individual Sellers</h3>
+        <p class="text-charcoal-600 mb-6">
+          Selling a personal vehicle? Get a quick, fair estimate and fast pickup. We handle all conditions and title situations.
+        </p>
+        <ul class="space-y-3 mb-8">
+          {consumerFeatures.map(feature => (
+            <li class="flex items-center gap-3 text-charcoal-700">
+              <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              {feature}
+            </li>
+          ))}
+        </ul>
+        <a href="/sell-your-junk-car" class="btn-primary w-full justify-center">
+          Sell Your Car
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+      
+      <!-- Business Path -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 border border-charcoal-100">
+        <div class="w-16 h-16 bg-graphite-600 text-white rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-charcoal-950 mb-3">Shops & Businesses</h3>
+        <p class="text-charcoal-600 mb-6">
+          Mechanic shops, body shops, dealers—clear space and get paid for unwanted vehicles with professional service.
+        </p>
+        <ul class="space-y-3 mb-8">
+          {businessFeatures.map(feature => (
+            <li class="flex items-center gap-3 text-charcoal-700">
+              <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              {feature}
+            </li>
+          ))}
+        </ul>
+        <a href="/business-vehicle-removal" class="btn-outline w-full justify-center">
+          Business Services
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Business Types -->
+    <div class="mt-12">
+      <p class="text-center text-charcoal-600 mb-6">Trusted by businesses across our service area:</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        {BUSINESS_TYPES.slice(0, 4).map(type => (
+          <div class="bg-white px-4 py-2 rounded-full border border-charcoal-200 text-sm text-charcoal-700">
+            {type.label}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
