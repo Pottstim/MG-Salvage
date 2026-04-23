@@ -1,0 +1,224 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ConsumerEstimateForm from '../components/forms/ConsumerEstimateForm.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
+import { VEHICLE_CONDITIONS, TITLE_STATUS, SERVICE_AREAS, SEO, ORGANIZATION_SCHEMA } from '../utils/constants';
+import { formatPhoneLink } from '../utils/helpers';
+
+const title = 'Sell Your Junk Car | Get a Cash Estimate Today';
+const description = 'Get cash for your junk car in Sanford, NC and surrounding areas. Free towing, same-day pickup available. We buy running, non-running, and totaled vehicles with or without titles.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Sell Your Junk Car', url: '/sell-your-junk-car' }
+];
+
+const pageSchema = {
+  '@type': 'Service',
+  name: 'Junk Car Buying',
+  description: description,
+  provider: { '@id': 'https://mgsalvage.com/#business' },
+  areaServed: SERVICE_AREAS.map(a => a.name)
+};
+---
+
+<MainLayout
+  title={title}
+  description={description}
+  keywords={`${SEO.keywords}, sell my car, junk car buyer, cash for car, free towing`}
+  schema={[ORGANIZATION_SCHEMA, pageSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  {/* Hero Section with Form */}
+  <section class="bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-graphite-900 text-white py-16 lg:py-24">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/20 text-brand-orange rounded-full text-sm font-medium">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            Free Towing Always Included
+          </div>
+          
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+            Get a Cash Estimate for Your Junk Car
+          </h1>
+          
+          <p class="text-xl text-charcoal-300 max-w-xl">
+            Sell your car in Sanford and surrounding areas. We buy vehicles in any condition—running, 
+            non-running, totaled, or incomplete. Free towing and payment on pickup.
+          </p>
+          
+          <div class="flex flex-wrap gap-4">
+            <span class="flex items-center gap-2 text-sm">
+              <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Same-day pickup available
+            </span>
+            <span class="flex items-center gap-2 text-sm">
+              <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Title assistance provided
+            </span>
+            <span class="flex items-center gap-2 text-sm">
+              <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Cash or check on pickup
+            </span>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+          <ConsumerEstimateForm showTitle={true} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Conditions Accepted */}
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">We Buy Cars in Any Condition</h2>
+        <p class="text-body-lg text-charcoal-600">
+          Don't worry about the condition—we'll make an offer on virtually any vehicle.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {VEHICLE_CONDITIONS.map((condition, index) => (
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-lg flex items-center justify-center mb-4">
+              <span class="text-xl font-bold">{index + 1}</span>
+            </div>
+            <h3 class="text-lg font-semibold text-charcoal-900 mb-2">{condition.label}</h3>
+            <p class="text-charcoal-600 text-sm">{condition.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Title Status Help */}
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">
+            Title Problems? We Can Help.
+          </h2>
+          <p class="text-charcoal-600 mb-8">
+            Unsure about your title situation? Many sellers have questions about titles, liens, and paperwork. 
+            We have experience with various scenarios and can guide you through the process.
+          </p>
+          
+          <div class="space-y-4">
+            {TITLE_STATUS.map(status => (
+              <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+                <div class="w-8 h-8 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-charcoal-900">{status.label}</h4>
+                  <p class="text-sm text-charcoal-600">{status.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <a href="/faq" class="btn-outline mt-8 inline-flex">
+            Learn More in FAQ
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+        
+        <div class="bg-white rounded-2xl p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-charcoal-950 mb-6">Common Questions</h3>
+          <div class="space-y-4">
+            <details class="group">
+              <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-charcoal-50 rounded-lg">
+                <span>What if I lost my title?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="text-charcoal-600 mt-3 px-4 text-sm">
+                We can often still purchase your vehicle. Requirements vary by situation—contact us 
+                and we'll explain your options based on NC regulations.
+              </div>
+            </details>
+            
+            <details class="group">
+              <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-charcoal-50 rounded-lg">
+                <span>Do you buy cars with liens?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="text-charcoal-600 mt-3 px-4 text-sm">
+                Vehicles with liens require additional documentation. We can guide you through 
+                the process, but you'll need to resolve the lien or obtain lienholder authorization.
+              </div>
+            </details>
+            
+            <details class="group">
+              <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4 bg-charcoal-50 rounded-lg">
+                <span>How quickly can you pick up?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="text-charcoal-600 mt-3 px-4 text-sm">
+                Same-day pickup is often available in Sanford and nearby areas. Most pickups 
+                are scheduled within 24-48 hours depending on your location.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Service Areas */}
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Service Areas</h2>
+        <p class="text-charcoal-600">
+          We provide junk car removal throughout central North Carolina. Don't see your city? 
+          Call us—we may still be able to help.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {SERVICE_AREAS.map(area => (
+          <a 
+            href={`/areas/${area.slug}`}
+            class="group bg-charcoal-50 hover:bg-brand-orange hover:text-white rounded-lg p-4 transition-colors"
+          >
+            <div class="font-medium">{area.name}</div>
+            <div class="text-sm opacity-70 group-hover:opacity-90">{area.county} County</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks variant="consumer" />
+  <TestimonialsSection />
+</MainLayout>

@@ -1,0 +1,102 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import TrustBar from '../components/sections/TrustBar.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import DualPathCTA from '../components/sections/DualPathCTA.astro';
+import ServiceAreasSection from '../components/sections/ServiceAreasSection.astro';
+import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
+import { ORGANIZATION_SCHEMA, SEO } from '../utils/constants';
+import { formatPhoneLink } from '../utils/helpers';
+
+// Create HomePage schema
+const homeSchema = {
+  '@type': 'WebPage',
+  name: SEO.defaultTitle,
+  description: SEO.defaultDescription,
+  url: 'https://mgsalvage.com',
+  mainEntity: {
+    '@type': 'AutomotiveBusiness',
+    '@id': 'https://mgsalvage.com/#business'
+  }
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' }
+];
+---
+
+<MainLayout
+  title={SEO.defaultTitle}
+  description={SEO.defaultDescription}
+  keywords={SEO.keywords}
+  schema={[ORGANIZATION_SCHEMA, homeSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  {/* Hero with Dual CTAs and Lead Form */}
+  <HeroSection 
+    variant="home" 
+    showForm={true}
+    formType="consumer"
+  />
+
+  {/* Trust Bar */}
+  <TrustBar />
+
+  {/* How It Works - Both paths */}
+  <HowItWorks variant="both" />
+
+  {/* Dual Path CTA - Consumer vs Business */}
+  <DualPathCTA />
+
+  {/* Service Areas */}
+  <ServiceAreasSection />
+
+  {/* Testimonials */}
+  <TestimonialsSection />
+
+  {/* Final CTA Section */}
+  <section class="section-padding bg-gradient-to-br from-charcoal-900 to-graphite-900 text-white">
+    <div class="container-content">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">
+          Ready to Get Started?
+        </h2>
+        <p class="text-xl text-charcoal-300 mb-10 max-w-2xl mx-auto">
+          Whether you're selling one car or clearing a business lot, we're ready to help. 
+          Get a free estimate with no obligation.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Sell Your Car
+          </a>
+          <a href="/business-vehicle-removal" class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Business Services
+          </a>
+        </div>
+        
+        <div class="flex items-center justify-center gap-6 text-charcoal-400">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Free Towing
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Same-Day Available
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Cash on Pickup
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

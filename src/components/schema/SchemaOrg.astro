@@ -1,0 +1,44 @@
+---
+import { ORGANIZATION_SCHEMA } from '../../utils/constants';
+
+export interface Props {
+  schema?: object | object[];
+  breadcrumbs?: Array<{ name: string; url: string }>;
+}
+
+const { schema, breadcrumbs } = Astro.props;
+
+// Build schema array
+const schemas: object[] = [ORGANIZATION_SCHEMA];
+
+// Add page-specific schema if provided
+if (schema) {
+  if (Array.isArray(schema)) {
+    schemas.push(...schema);
+  } else {
+    schemas.push(schema);
+  }
+}
+
+// Add breadcrumb schema if breadcrumbs provided
+if (breadcrumbs && breadcrumbs.length > 0) {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: `https://mgsalvage.com${item.url}`
+    }))
+  };
+  schemas.push(breadcrumbSchema);
+}
+
+// Create graph wrapper if multiple schemas
+const finalSchema = schemas.length > 1
+  ? { '@context': 'https://schema.org', '@graph': schemas }
+  : schemas[0];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(finalSchema)} />

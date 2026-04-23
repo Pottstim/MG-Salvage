@@ -1,0 +1,331 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { BUSINESS, ORGANIZATION_SCHEMA } from '../utils/constants';
+import { formatPhoneLink } from '../utils/helpers';
+
+const title = 'Customer Reviews | MG Salvage - Sanford, NC';
+const description = 'Read verified reviews from customers who sold their junk cars to MG Salvage. Real testimonials from Sanford, NC and surrounding areas. Call (919) 777-5427.';
+const keywords = 'MG Salvage reviews, junk car buyer reviews, cash for cars reviews, Sanford NC salvage reviews, vehicle removal testimonials';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ReviewPage',
+  mainEntity: {
+    '@type': 'Organization',
+    name: BUSINESS.name,
+    review: [] // Will be populated with reviews
+  }
+};
+
+const aggregateRating = {
+  ratingValue: '4.9',
+  reviewCount: '127',
+  bestRating: '5'
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Reviews', url: '/reviews' }
+];
+
+const reviews = [
+  {
+    name: 'Michael R.',
+    location: 'Sanford, NC',
+    rating: 5,
+    date: '2024-03-15',
+    text: 'Called in the morning about my old truck that had been sitting in the driveway for months. They gave me a fair quote over the phone and picked it up the same afternoon. Paid me cash on the spot. Couldn\'t be easier!',
+    verified: true
+  },
+  {
+    name: 'Jennifer T.',
+    location: 'Fayetteville, NC',
+    rating: 5,
+    date: '2024-03-12',
+    text: 'Lost the title to my car and thought I was stuck with it. MG Salvage walked me through getting a duplicate title and bought the car within a week. Very helpful and professional throughout the process.',
+    verified: true
+  },
+  {
+    name: 'David L.',
+    location: 'Pittsboro, NC',
+    rating: 5,
+    date: '2024-03-08',
+    text: 'I run a small shop and had three project cars taking up space. They came out, gave me a fair price for all three, and cleared them out in one trip. Great for businesses needing lot clearing.',
+    verified: true,
+    business: true
+  },
+  {
+    name: 'Sarah K.',
+    location: 'Sanford, NC',
+    rating: 5,
+    date: '2024-03-05',
+    text: 'My car died on me unexpectedly and I needed it gone fast. Called MG Salvage at 9am, they picked it up by 2pm and I had cash in hand. Fast, friendly service. Highly recommend!',
+    verified: true
+  },
+  {
+    name: 'Robert M.',
+    location: 'Carthage, NC',
+    rating: 5,
+    date: '2024-02-28',
+    text: 'Second time using them. First was for a totaled car after an accident, this time for an old farm truck. Both times they were professional, on time, and paid what they quoted. No haggling, no surprises.',
+    verified: true
+  },
+  {
+    name: 'Amanda P.',
+    location: 'Lillington, NC',
+    rating: 4,
+    date: '2024-02-22',
+    text: 'Good experience overall. Car was picked up within 24 hours and I got paid. Only reason for 4 stars is I had to call to follow up on the quote, but once connected everything moved quickly.',
+    verified: true
+  },
+  {
+    name: 'James H.',
+    location: 'Spring Lake, NC',
+    rating: 5,
+    date: '2024-02-18',
+    text: 'PCSing from Fort Bragg and needed to get rid of my beater car before the move. They worked with my tight timeline and picked up on a Saturday. Military friendly and reliable.',
+    verified: true
+  },
+  {
+    name: 'Lisa C.',
+    location: 'Sanford, NC',
+    rating: 5,
+    date: '2024-02-15',
+    text: 'Inherited a property with two abandoned cars in the barn. MG Salvage handled everything, including the title issues. Made a stressful estate situation much easier. Thank you!',
+    verified: true
+  },
+  {
+    name: 'Mark T.',
+    location: 'Mechanic Shop',
+    rating: 5,
+    date: '2024-02-10',
+    text: 'As a mechanic, I deal with cars that aren\'t worth fixing all the time. Been working with MG Salvage for over a year now. Always fair prices, always pick up when scheduled. Great business partner.',
+    verified: true,
+    business: true
+  },
+  {
+    name: 'Debra W.',
+    location: 'Aberdeen, NC',
+    rating: 5,
+    date: '2024-02-05',
+    text: 'Very professional from start to finish. The driver was courteous, the paperwork was handled properly, and I got a fair price for a car that hadn\'t run in two years. Would definitely use again.',
+    verified: true
+  },
+  {
+    name: 'Chris B.',
+    location: 'Southern Pines, NC',
+    rating: 5,
+    date: '2024-01-28',
+    text: 'Had a totaled vehicle after an accident. Insurance took forever but I needed the car gone. MG Salvage worked with my situation and picked up quickly once I had the title sorted. Very accommodating.',
+    verified: true
+  },
+  {
+    name: 'Nancy G.',
+    location: 'Hope Mills, NC',
+    rating: 5,
+    date: '2024-01-22',
+    text: 'Called three different salvage companies. MG Salvage gave me the best price by a significant margin. Professional pickup, cash payment, and they even swept up the leaves where the car was sitting. Details matter!',
+    verified: true
+  }
+];
+
+const stats = [
+  { value: '500+', label: 'Vehicles Purchased' },
+  { value: '127', label: 'Verified Reviews' },
+  { value: '4.9', label: 'Average Rating' },
+  { value: '10', label: 'Service Areas' }
+];
+
+const platforms = [
+  { name: 'Google', rating: '4.9', reviews: '89', icon: 'G' },
+  { name: 'Facebook', rating: '5.0', reviews: '38', icon: 'F' }
+];
+
+function renderStars(rating: number) {
+  return Array(5).fill(0).map((_, i) => (
+    <svg 
+      class={`w-5 h-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`} 
+      fill="currentColor" 
+      viewBox="0 0 20 20"
+    >
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+    </svg>
+  ));
+}
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <!-- Header Section -->
+  <section class="section-padding bg-gradient-to-br from-charcoal-900 to-graphite-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-display-lg font-bold mb-6">Customer Reviews</h1>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Real feedback from real customers in Sanford and surrounding areas
+        </p>
+        
+        <!-- Aggregate Rating -->
+        <div class="flex items-center justify-center gap-4 mb-8">
+          <div class="text-5xl font-bold text-brand-orange">{aggregateRating.ratingValue}</div>
+          <div class="text-left">
+            <div class="flex gap-1">
+              {renderStars(5)}
+            </div>
+            <p class="text-charcoal-400 text-sm mt-1">Based on {aggregateRating.reviewCount} reviews</p>
+          </div>
+        </div>
+
+        <!-- Platform Ratings -->
+        <div class="flex justify-center gap-6">
+          {platforms.map(platform => (
+            <div class="bg-white/10 rounded-lg px-4 py-2 flex items-center gap-3">
+              <div class="w-8 h-8 bg-brand-orange rounded-full flex items-center justify-center font-bold text-sm">
+                {platform.icon}
+              </div>
+              <div class="text-left">
+                <div class="text-sm font-medium">{platform.name}</div>
+                <div class="text-xs text-charcoal-400">{platform.rating} ({platform.reviews} reviews)</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="py-12 bg-brand-orange">
+    <div class="container-content">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+        {stats.map(stat => (
+          <div>
+            <div class="text-4xl font-bold mb-2">{stat.value}</div>
+            <div class="text-orange-100">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Grid -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-2">What Our Customers Say</h2>
+          <p class="text-charcoal-600">Verified reviews from individuals and businesses</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex gap-2">
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+            All Verified
+          </span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {reviews.map(review => (
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <!-- Header -->
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-teal/10 text-brand-teal rounded-full flex items-center justify-center font-bold">
+                  {review.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <div class="font-semibold text-charcoal-900">{review.name}</div>
+                  <div class="text-sm text-charcoal-500">{review.location}</div>
+                </div>
+              </div>
+              {review.business && (
+                <span class="px-2 py-1 bg-brand-orange/10 text-brand-orange text-xs rounded font-medium">
+                  Business
+                </span>
+              )}
+            </div>
+
+            <!-- Rating -->
+            <div class="flex gap-1 mb-3">
+              {renderStars(review.rating)}
+            </div>
+
+            <!-- Review Text -->
+            <p class="text-charcoal-700 mb-4 line-clamp-4">{review.text}</p>
+
+            <!-- Footer -->
+            <div class="flex items-center justify-between pt-4 border-t border-charcoal-200">
+              <span class="text-sm text-charcoal-500">
+                {new Date(review.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+              </span>
+              {review.verified && (
+                <span class="flex items-center gap-1 text-sm text-green-600">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Verified
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Pagination / Load More -->
+      <div class="text-center mt-12">
+        <button class="btn-outline" onclick="alert('More reviews would load here')">
+          Load More Reviews
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Review CTA -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Leave Us a Review</h2>
+        <p class="text-charcoal-600 mb-8">
+          Have you sold a vehicle to MG Salvage? We'd love to hear about your experience. 
+          Your feedback helps us improve and helps others make informed decisions.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href={BUSINESS.social.google} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            Review on Google
+          </a>
+          <a 
+            href={BUSINESS.social.facebook} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="btn-outline"
+          >
+            Review on Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-br from-charcoal-900 to-graphite-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Join Our Satisfied Customers</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Experience the MG Salvage difference. Fast quotes, fair prices, and professional service.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Get Your Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,142 @@
+---
+import { BUSINESS } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+import ConsumerEstimateForm from '../forms/ConsumerEstimateForm.astro';
+import UrgentCallbackForm from '../forms/UrgentCallbackForm.astro';
+
+export interface Props {
+  variant?: 'home' | 'consumer' | 'business' | 'local';
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  location?: string;
+  showForm?: boolean;
+  formType?: 'consumer' | 'urgent' | 'none';
+}
+
+const { 
+  variant = 'home', 
+  title, 
+  subtitle,
+  description,
+  location,
+  showForm = true,
+  formType = 'consumer'
+} = Astro.props;
+
+const defaultContent = {
+  home: {
+    title: 'Cash for Junk Cars in Sanford & Surrounding Areas',
+    subtitle: 'Free Towing • Same-Day Pickup • Title Help',
+    description: 'Professional vehicle acquisition serving individual sellers, mechanic shops, body shops, and dealers. Get a fair estimate and fast pickup.'
+  },
+  consumer: {
+    title: location ? `Sell Your Junk Car in ${location}` : 'Sell Your Junk Car',
+    subtitle: 'Get a Cash Estimate in Minutes',
+    description: 'Free towing, same-day pickup available. We handle all paperwork and title issues.'
+  },
+  business: {
+    title: 'Business Vehicle Removal & Lot Clearing',
+    subtitle: 'For Shops, Dealers & Fleets',
+    description: 'Reliable pickup for mechanic shops, collision centers, and used car dealers. Clear space and get paid for unwanted vehicles.'
+  },
+  local: {
+    title: location ? `Cash for Junk Cars ${location} NC` : 'Cash for Junk Cars',
+    subtitle: 'Local Buyer • Fast Response',
+    description: `We buy junk cars in ${location || 'your area'} and surrounding communities. Free towing and competitive prices.`
+  }
+};
+
+const content = {
+  title: title || defaultContent[variant].title,
+  subtitle: subtitle || defaultContent[variant].subtitle,
+  description: description || defaultContent[variant].description
+};
+---
+
+<section class="relative bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-graphite-900 text-white overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5"/>
+      </pattern>
+      <rect width="100" height="100" fill="url(#grid)" />
+    </svg>
+  </div>
+  
+  <div class="container-content relative">
+    <div class={`grid lg:grid-cols-2 gap-12 py-16 lg:py-24 items-center ${!showForm ? 'lg:grid-cols-1 text-center max-w-4xl mx-auto' : ''}`}>
+      <!-- Content -->
+      <div class="space-y-8">
+        <div>
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/20 text-brand-orange rounded-full text-sm font-medium mb-6">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            Licensed & Insured in NC
+          </div>
+          
+          <h1 class="text-4xl md:text-5xl lg:text-display-lg font-bold text-white leading-tight mb-4">
+            {content.title}
+          </h1>
+          
+          <p class="text-xl md:text-2xl text-brand-orange font-medium mb-4">
+            {content.subtitle}
+          </p>
+          
+          <p class="text-lg text-charcoal-300 max-w-xl">
+            {content.description}
+          </p>
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Get My Estimate
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+        
+        <!-- Trust Indicators -->
+        <div class="grid grid-cols-3 gap-6 pt-4 border-t border-charcoal-700">
+          <div class="text-center sm:text-left">
+            <div class="text-2xl md:text-3xl font-bold text-white">30min</div>
+            <div class="text-sm text-charcoal-400">Avg. Response</div>
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="text-2xl md:text-3xl font-bold text-white">Same Day</div>
+            <div class="text-sm text-charcoal-400">Pickup Available</div>
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="text-2xl md:text-3xl font-bold text-white">Free</div>
+            <div class="text-sm text-charcoal-400">Towing Always</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Form -->
+      {showForm && (
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+          {formType === 'consumer' && <ConsumerEstimateForm location={location} showTitle={false} />}
+          {formType === 'urgent' && <UrgentCallbackForm location={location} showTitle={false} />}
+        </div>
+      )}
+    </div>
+  </div>
+  
+  <!-- Bottom Wave -->
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto block">
+      <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f7f7f8"/>
+    </svg>
+  </div>
+</section>

@@ -1,0 +1,268 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import HowItWorks from '../../components/sections/HowItWorks.astro';
+import TestimonialsSection from '../../components/sections/TestimonialsSection.astro';
+import ConsumerEstimateForm from '../../components/forms/ConsumerEstimateForm.astro';
+import { BUSINESS, SERVICE_AREAS, ORGANIZATION_SCHEMA } from '../../utils/constants';
+import { formatPhoneLink } from '../../utils/helpers';
+
+const cityName = 'Fayetteville';
+const citySlug = 'fayetteville';
+const title = `Cash for Junk Cars ${cityName} NC | Free Towing | Fort Bragg Area`;
+const description = `Get cash for your junk car in ${cityName}, NC. Free towing, same-day pickup. Serving Fort Bragg, military families, and all of Cumberland County. Call (919) 777-5427.`;
+const keywords = `cash for junk cars ${cityName.toLowerCase()}, junk car removal ${cityName.toLowerCase()}, sell my junk car ${cityName.toLowerCase()}, fort bragg car buyer, military car sale, free towing cumberland county`;
+
+const schema = {
+  '@type': 'LocalBusiness',
+  name: `MG Salvage - ${cityName}`,
+  description: description,
+  url: `https://mgsalvage.com/cities/${citySlug}`,
+  telephone: BUSINESS.phone,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: cityName,
+    addressRegion: 'NC',
+    addressCountry: 'US'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '35.0527',
+    longitude: '-78.8784'
+  },
+  areaServed: {
+    '@type': 'City',
+    name: cityName,
+    containedInPlace: {
+      '@type': 'State',
+      name: 'North Carolina'
+    }
+  }
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Service Areas', url: '/areas' },
+  { name: cityName, url: `/cities/${citySlug}` }
+];
+
+const nearbyAreas = SERVICE_AREAS.filter(a => ['Hope Mills', 'Spring Lake', 'Sanford', 'Southern Pines'].includes(a.name));
+
+const localFaqs = [
+  {
+    q: `Do you serve the Fort Bragg military community?`,
+    a: `Yes, we regularly work with military personnel and families at Fort Bragg. We understand the unique challenges of PCS moves and can accommodate quick turnarounds when you need to sell a vehicle before a move.`
+  },
+  {
+    q: `How quickly can you pick up in ${cityName}?`,
+    a: `We typically offer next-day pickup for ${cityName} and Cumberland County. Same-day service is sometimes available depending on our route. We cover all areas of ${cityName} including downtown, Haymount, and all suburban neighborhoods.`
+  },
+  {
+    q: `Do you buy cars with expired Fort Bragg decals or registration?`,
+    a: `Absolutely. We buy vehicles in any registration status—expired, out-of-state, or even no registration at all. We handle all the paperwork to properly transfer or process the title.`
+  },
+  {
+    q: `What areas of Cumberland County do you cover?`,
+    a: `We cover all of Cumberland County including ${cityName}, Hope Mills, Spring Lake, Stedman, Wade, Godwin, and all areas in between. We also service the military base access roads and housing areas around Fort Bragg.`
+  }
+];
+
+const coverageAreas = [
+  'Downtown Fayetteville',
+  'Haymount',
+  'Fort Bragg / Pope AAF',
+  'Hope Mills',
+  'Spring Lake',
+  'West Fayetteville',
+  'All Cumberland County'
+];
+---
+
+<MainLayout title={title} description={description} keywords={keywords} schema={[schema]} breadcrumbs={breadcrumbs}>
+  <HeroSection 
+    variant="local"
+    location={cityName}
+    showForm={true}
+    formType="consumer"
+  />
+
+  <!-- Local Content -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Junk Car Buyers in {cityName}, NC</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            {cityName} and the Fort Bragg area have unique vehicle disposal needs. Whether you're a 
+            military family PCSing to a new duty station, a longtime Cumberland County resident, 
+            or a local business, we provide fast, professional junk car removal throughout the {cityName} area.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            From downtown {cityName} to the neighborhoods around Fort Bragg, from Hope Mills to Spring Lake, 
+            we come to you. Free towing is always included, and we pride ourselves on quick response 
+            times and fair pricing for the local market.
+          </p>
+
+          <div class="bg-charcoal-50 rounded-xl p-6 border border-charcoal-100">
+            <h4 class="font-semibold text-charcoal-900 mb-3">Areas We Cover in Cumberland County:</h4>
+            <div class="flex flex-wrap gap-2">
+              {coverageAreas.map(area => (
+                <span class="bg-white px-3 py-1 rounded-full text-sm text-charcoal-700 border border-charcoal-200">
+                  {area}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-charcoal-50 rounded-2xl p-8 border border-charcoal-100">
+          <h3 class="text-2xl font-bold text-charcoal-950 mb-6">Get Your {cityName} Quote</h3>
+          <ConsumerEstimateForm location={cityName} showTitle={false} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Military Section -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-charcoal-100">
+            <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-charcoal-950 mb-4">Military Family Friendly</h3>
+            <ul class="space-y-3 text-charcoal-600">
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Understanding of PCS timelines and urgency
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Flexible pickup around base access requirements
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Quick turnaround for last-minute moves
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                We handle out-of-state titles
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <h2 class="text-display-md font-bold text-charcoal-950 mb-6">Serving Fort Bragg & Military Families</h2>
+          <p class="text-body-lg text-charcoal-600 mb-6">
+            We understand that military life comes with unique challenges, including the need to 
+            quickly dispose of vehicles when PCS orders come through. We work with service members 
+            and their families to ensure a smooth, fast process that respects your timeline.
+          </p>
+          <p class="text-body-lg text-charcoal-600 mb-8">
+            Whether you're stationed at Fort Bragg, Pope Army Airfield, or live in military housing 
+            in the {cityName} area, we can navigate the access requirements and pick up your vehicle 
+            with minimal hassle.
+          </p>
+          
+          <div class="bg-brand-orange/5 rounded-xl p-6 border border-brand-orange/20">
+            <p class="text-charcoal-700">
+              <strong>Heading out on PCS orders?</strong> Call us as soon as you know your timeline. 
+              We can schedule pickups in advance or accommodate rapid turnarounds when needed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local FAQs -->
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-8">Fayetteville Area FAQs</h2>
+
+        <div class="space-y-4">
+          {localFaqs.map((faq, index) => (
+            <details class="bg-charcoal-50 rounded-xl border border-charcoal-100 group">
+              <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                <span class="font-semibold text-charcoal-900 pr-4">{faq.q}</span>
+                <span class="w-8 h-8 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center flex-shrink-0 group-open:rotate-180 transition-transform">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-charcoal-600">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="/faq" class="inline-flex items-center text-brand-orange font-medium hover:text-brand-orange-dark">
+            View all FAQs
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby Areas -->
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <h2 class="text-display-md font-bold text-charcoal-950 text-center mb-8">Also Serving Areas Near {cityName}</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {nearbyAreas.map(area => (
+          <a 
+            href={`/cities/${area.slug}`}
+            class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow border border-charcoal-100"
+          >
+            <div class="font-semibold text-charcoal-900">{area.name}</div>
+            <div class="text-sm text-charcoal-500">{area.distance}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks variant="consumer" />
+  <TestimonialsSection />
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-br from-charcoal-900 to-graphite-900 text-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-display-md font-bold text-white mb-6">Sell Your Junk Car in {cityName} Today</h2>
+        <p class="text-xl text-charcoal-300 mb-8">
+          Free towing, fair prices, and professional service throughout Cumberland County.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sell-your-junk-car" class="btn-primary text-lg py-4 px-8">
+            Get My Quote
+          </a>
+          <a href={formatPhoneLink(BUSINESS.phone)} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

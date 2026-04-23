@@ -1,0 +1,230 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import BusinessForm from '../components/forms/BusinessForm.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import { BUSINESS_TYPES, SERVICE_AREAS, SEO, ORGANIZATION_SCHEMA } from '../utils/constants';
+import { formatPhoneLink } from '../utils/helpers';
+
+const title = 'Business Vehicle Removal & Lot Clearing | MG Salvage';
+const description = 'Professional vehicle removal services for mechanic shops, auto body shops, and used car dealers. Clear lot space, remove abandoned vehicles, and get paid. Serving Sanford, NC and surrounding areas.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Business Vehicle Removal', url: '/business-vehicle-removal' }
+];
+
+const pageSchema = {
+  '@type': 'Service',
+  name: 'Business Vehicle Removal',
+  description: description,
+  provider: { '@id': 'https://mgsalvage.com/#business' },
+  areaServed: SERVICE_AREAS.map(a => a.name)
+};
+---
+
+<MainLayout
+  title={title}
+  description={description}
+  keywords={`${SEO.keywords}, business vehicle removal, mechanic shop, auto body shop, car dealer, lot clearing, abandoned vehicles`}
+  schema={[ORGANIZATION_SCHEMA, pageSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  {/* Hero Section */}
+  <section class="bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-graphite-900 text-white py-16 lg:py-24">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-graphite-600/50 text-white rounded-full text-sm font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            Business Services
+          </div>
+          
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+            Business Vehicle Removal & Lot Clearing
+          </h1>
+          
+          <p class="text-xl text-charcoal-300 max-w-xl">
+            Professional vehicle acquisition for mechanic shops, body shops, and dealers. 
+            Clear space, remove abandoned vehicles, and get reliable service with proper documentation.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#request-pickup" class="btn-primary text-lg py-4 px-8">
+              Request Shop Pickup
+            </a>
+            <a href={formatPhoneLink('(919) 777-5427')} class="btn-outline border-white text-white hover:bg-white hover:text-charcoal-900 text-lg py-4 px-8">
+              Call for Business Quote
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+          <BusinessForm showTitle={true} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Services for Business */}
+  <section class="section-padding bg-white">
+    <div class="container-content">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Business Solutions</h2>
+        <p class="text-body-lg text-charcoal-600">
+          We understand the needs of automotive businesses. Our services are designed to 
+          help you reclaim space and manage unwanted inventory.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="bg-charcoal-50 rounded-xl p-8 border border-charcoal-100">
+          <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-950 mb-3">Lot Clearing</h3>
+          <p class="text-charcoal-600 mb-4">
+            Clear multiple vehicles from your lot in one coordinated pickup. 
+            Ideal for dealers and shops with accumulated inventory.
+          </p>
+          <ul class="space-y-2 text-sm text-charcoal-600">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Multiple truck coordination
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Single-day clearing available
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-charcoal-50 rounded-xl p-8 border border-charcoal-100">
+          <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-950 mb-3">Recurring Pickups</h3>
+          <p class="text-charcoal-600 mb-4">
+            Set up scheduled sweeps for ongoing needs. Weekly, bi-weekly, or monthly 
+            service to keep your lot clear.
+          </p>
+          <ul class="space-y-2 text-sm text-charcoal-600">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Flexible scheduling
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Priority business service
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-charcoal-50 rounded-xl p-8 border border-charcoal-100">
+          <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-950 mb-3">Documentation</h3>
+          <p class="text-charcoal-600 mb-4">
+            We handle the paperwork. Proper documentation for abandoned vehicles, 
+            title transfers, and compliance.
+          </p>
+          <ul class="space-y-2 text-sm text-charcoal-600">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Title assistance
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Abandoned vehicle process
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-charcoal-50 rounded-xl p-8 border border-charcoal-100">
+          <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a1 1 0 11-2 0 1 1 0 012 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-950 mb-3">Fair Payment</h3>
+          <p class="text-charcoal-600 mb-4">
+            Competitive pricing based on vehicle value. Payment on pickup or 
+            net-15 terms for established partners.
+          </p>
+          <ul class="space-y-2 text-sm text-charcoal-600">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Cash or check on pickup
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Volume pricing available
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Business Types */}
+  <section class="section-padding bg-charcoal-50">
+    <div class="container-content">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-display-md font-bold text-charcoal-950 mb-4">Industries We Serve</h2>
+        <p class="text-charcoal-600">
+          Tailored solutions for different automotive businesses
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {BUSINESS_TYPES.map((type, index) => (
+          <a 
+            href={index < 4 ? `/business/${type.id === 'mechanic' ? 'mechanic-shops' : type.id === 'bodyshop' ? 'auto-body-collision' : type.id === 'dealer' ? 'used-car-dealers' : 'vehicle-removal'}` : '#request-pickup'}
+            class="group bg-white rounded-xl p-6 border border-charcoal-100 hover:shadow-lg hover:border-brand-orange transition-all"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-12 h-12 bg-charcoal-100 group-hover:bg-brand-orange group-hover:text-white rounded-lg flex items-center justify-center transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              {index < 4 && (
+                <svg class="w-5 h-5 text-charcoal-400 group-hover:text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              )}
+            </div>
+            <h3 class="text-lg font-semibold text-charcoal-900 mb-2">{type.label}</h3>
+            <p class="text-charcoal-600 text-sm">{type.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks variant="business" />
+</MainLayout>

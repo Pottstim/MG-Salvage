@@ -1,0 +1,132 @@
+---
+export interface Props {
+  variant?: 'consumer' | 'business' | 'both';
+}
+
+const { variant = 'consumer' } = Astro.props;
+
+const steps = {
+  consumer: [
+    {
+      number: '01',
+      title: 'Request an Estimate',
+      description: 'Fill out our simple form or call us. Tell us about your vehicle—year, make, model, condition, and location.',
+      icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>`
+    },
+    {
+      number: '02',
+      title: 'Get Your Offer',
+      description: 'We\'ll review your information and provide a fair cash estimate. Most quotes are provided within 30 minutes.',
+      icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>`
+    },
+    {
+      number: '03',
+      title: 'Schedule Pickup',
+      description: 'Accept the offer and schedule a pickup time. Same-day and next-day pickups are often available.',
+      icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>`
+    },
+    {
+      number: '04',
+      title: 'Get Paid on Pickup',
+      description: 'We arrive with a tow truck, handle all paperwork, and pay you cash or check on the spot.',
+      icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>`
+    }
+  ],
+  business: [
+    {
+      number: '01',
+      title: 'Contact Us',
+      description: 'Call or fill out our business form. Tell us about your shop, lot size, and vehicle removal needs.',
+      icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+      </svg>`
+    },
+    {
+      number: '02',
+      title: 'Site Assessment',
+      description: 'We discuss your specific needs—one-time lot clearing or recurring pickups—and provide a service plan.',
+      icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+      </svg>`
+    },
+    {
+      number: '03',
+      title: 'Scheduled Pickup',
+      description: 'We arrive on schedule with appropriate equipment. We handle all vehicle documentation and compliance.',
+      icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>`
+    },
+    {
+      number: '04',
+      title: 'Payment & Follow-up',
+      description: 'Payment issued per vehicle or on agreed terms. Optional recurring schedule for ongoing needs.',
+      icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>`
+    }
+  ]
+};
+
+const currentSteps = variant === 'business' ? steps.business : steps.consumer;
+const title = variant === 'business' ? 'How Business Pickup Works' : 'How It Works';
+const subtitle = variant === 'business' 
+  ? 'Simple process designed for shops and dealers'
+  : 'Four simple steps from estimate to pickup';
+---
+
+<section class="section-padding bg-white">
+  <div class="container-content">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-display-md font-bold text-charcoal-950 mb-4">{title}</h2>
+      <p class="text-body-lg text-charcoal-600">{subtitle}</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {currentSteps.map((step, index) => (
+        <div class="relative">
+          {/* Connector line */}
+          {index < currentSteps.length - 1 && (
+            <div class="hidden lg:block absolute top-12 left-1/2 w-full h-0.5 bg-charcoal-200">
+              <div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-charcoal-300 rounded-full"></div>
+            </div>
+          )}
+          
+          <div class="relative bg-charcoal-50 rounded-xl p-6 h-full">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 bg-brand-orange text-white rounded-lg flex items-center justify-center">
+                <Fragment set:html={step.icon} />
+              </div>
+              <span class="text-4xl font-bold text-charcoal-200">{step.number}</span>
+            </div>
+            <h3 class="text-lg font-semibold text-charcoal-900 mb-2">{step.title}</h3>
+            <p class="text-charcoal-600 text-sm">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    {variant === 'both' && (
+      <div class="mt-12 grid md:grid-cols-2 gap-8">
+        <div class="bg-charcoal-50 rounded-xl p-8 text-center">
+          <h3 class="text-xl font-semibold text-charcoal-900 mb-2">For Individual Sellers</h3>
+          <p class="text-charcoal-600 mb-4">Selling a personal vehicle? Get a quick estimate and fast pickup.</p>
+          <a href="/sell-your-junk-car" class="btn-primary">Sell Your Car</a>
+        </div>
+        <div class="bg-charcoal-50 rounded-xl p-8 text-center">
+          <h3 class="text-xl font-semibold text-charcoal-900 mb-2">For Businesses</h3>
+          <p class="text-charcoal-600 mb-4">Shop or dealer with multiple vehicles? We offer scheduled lot clearing.</p>
+          <a href="/business-vehicle-removal" class="btn-outline">Business Services</a>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
